@@ -1,14 +1,16 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import routes from "./config/routes";
+import AuthPage from "./components/AuthPage";
+
 
 function App() {
   return (
     <div className="App">
+    {/* <NavBar /> */}
+
       <Routes>
-        {routes({}).map((route) => (
-          <Route key={route.path} path={route.path} element={route.element} />
-        ))}
+        <Route  path="/signin" element={<AuthPage myError={myError} onSignIn={handleSignIn}/>}/>
+        <Route  path="/signup" element={<AuthPage />}/>
       </Routes>
     </div>
   );

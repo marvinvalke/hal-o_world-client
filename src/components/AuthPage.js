@@ -1,9 +1,20 @@
-import React from "react";
+import React,{useState , useEffect} from "react";
 import "./AuthPage.css";
-import { Link } from "react-router-dom";
 
 function AuthPage(props) {
-  const card = document.getElementById("card");
+
+  const [card, setCard] = useState(null)
+
+  useEffect(()=>{
+    setCard(document.getElementById("card"))
+  },[])
+
+
+  if (!card) {
+    <p>LOADING</p>;
+  }
+
+  console.log(card)
 
     function openRegister() {
       card.style.transform = "rotateY(-180deg)";
@@ -14,64 +25,64 @@ function AuthPage(props) {
     }
 
   return (
-    <div class="container">
-      <div class="card">
-        <div class="inner-box" id="card">
-          <div class="card-front">
+    <div className="container">
+      <div className="card">
+        <div className="inner-box" id="card">
+          <div className="card-front">
             <h2>LOGIN</h2>
             <form action="">
               <input
                 type="email"
-                class="input-box"
+                className="input-box"
                 placeholder="example@mail.com"
                 required
               />
               <input
                 type="password"
-                class="input-box"
+                className="input-box"
                 placeholder="Password"
                 required
               />
-              <button type="submit" class="submit-btn">
+              <button type="submit" className="submit-btn">
                 Submit
               </button>
               <input type="checkbox" />
               <span>Remember Me</span>
             </form>
-            <button type="button" class="btn" onClick={openRegister}>
+            <button type="button" className="btn" onClick={openRegister}>
               I'm New Here
             </button>
             {/*      <Link to={}>Forget Password</Link> */}
           </div>
 
-          <div class="card-back">
+          <div className="card-back">
             <h2>SIGNUP</h2>
             <form action="">
               <input
                 type="text"
-                class="input-box"
+                className="input-box"
                 placeholder="Jhon"
                 required
               />
               <input
                 type="email"
-                class="input-box"
+                className="input-box"
                 placeholder="example@mail.com"
                 required
               />
               <input
                 type="password"
-                class="input-box"
+                className="input-box"
                 placeholder="Password"
                 required
               />
-              <button type="submit" class="submit-btn">
+              <button type="submit" className="submit-btn">
                 Submit
               </button>
               <input type="checkbox" />
               <span>Remember Me</span>
             </form>
-            <button type="button" class="btn" onClick={openLogin}>
+            <button type="button" className="btn" onClick={openLogin}>
               I've an account
             </button>
             {/*     <Link to="#">Forget Password</Link> */}

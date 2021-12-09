@@ -8,7 +8,7 @@
   width: 100%;
   height: 100vh;
   font-family: sans-serif;
-  background: rgb(187, 187, 245);
+  background: rgb(0, 0, 0);
   color: #fff;
   display: flex;
   align-items: center;
@@ -38,8 +38,8 @@
   height: 100%;
   background-position: center;
   background-size: cover;
-  background-image: linear-gradient(rgba(0, 0, 100, 0.8), rgba(0, 0, 100, 0.8)),
-    url(https://i.postimg.cc/zG2yKQFM/background.jpg);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(4, 4, 20, 0.8)),
+    url(https://images-assets.nasa.gov/image/iss050e066094/iss050e066094~medium.jpg);
   padding: 55px;
   box-sizing: border-box;
   backface-visibility: hidden;

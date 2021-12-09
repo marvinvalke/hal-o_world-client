@@ -1,3 +1,3 @@
-const API_URL= 'http://localhost:5005/api'
+const HALO_URL = 'http://localhost:5005/api'
 
-export {API_URL}
+export {HALO_URL}

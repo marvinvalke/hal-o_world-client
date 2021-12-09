@@ -88,7 +88,7 @@ Each mission can also be reviewed by users (Rating + Comments). Hello world
   email: {type: String, required: true, unique: true},
   password: {type: String, required: true},
   profilePic: {type: String},
-  MissionsAdded: [{type: Schema.Types.ObjectId, ref: 'Missions'}]
+  MissionsAdded: [{type: Schema.Types.ObjectId, ref: 'Missions'}],
   MissionsCreated: [{type: Schema.Types.ObjectId, ref: 'Missions'}]
 }
 
@@ -107,7 +107,7 @@ Each mission can also be reviewed by users (Rating + Comments). Hello world
   rate: {type: Number, required: true},
   date: {type: Date, required: true},
   comments: {type: String, required: true},
-  missionId: [{type: Schema.Types.ObjectId, ref: 'Mission'}]
+  missionId: [{type: Schema.Types.ObjectId, ref: 'Mission'}],
   userId: [{type: Schema.Types.ObjectId, ref: 'User'}]
 }
 

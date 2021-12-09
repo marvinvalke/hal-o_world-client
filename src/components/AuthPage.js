@@ -18,9 +18,9 @@ function AuthPage(props) {
     card.style.transform = "rotateY(-180deg)";
   }
 
-  function openLogin() {
-    card.style.transform = "rotateY(0deg)";
-  }
+    function openLogin() {
+      card.style.transform = "rotateY(0deg)";
+    }
 
   return (
     <div className="container">

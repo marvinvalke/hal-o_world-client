@@ -1,10 +1,14 @@
+
+import LandingPage from "./components/LandingPage";
 import React, { useContext, useEffect, useState } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
-import AuthPage from "./components/AuthPage";
-import MyNav from "./components/MyNav";
 import { HALO_URL } from "./config";
 import axios from "axios";
 import { UserContext } from "./context/app.context";
+import AuthPage from "./components/AuthPage";
+import AboutPage from './AboutPage';
+import Missions from './Missions';
+
 
 function App() {
   // STATES HOOKS AND CONTEXT----------------------------
@@ -49,22 +53,33 @@ function App() {
 
 
   }
-
-
-
-
   //-------------------------------------------------
 
+// MISSIONS PAGE------------------------------------------------------------------
+  const [missions, setMissions] = useState([]) //to store missions info
+
+        //create useEffect to mount missions component and fetch info into api/db
+        useEffect(() => {
+            const fetchData = async () => {
+            let response  = await axios.get(`${HALO_URL}/missions`, {withCredentials: true})
+            setMissions(response.data)
+            
+        }
+        fetchData()
+        }, [])
+  //-------------------------------------------------
 
   return (
     <div className="App">
-      <MyNav />
-
+      
+      <LandingPage />
       <Routes>
         <Route
           path="/signin"
           element={<AuthPage myError={myError} onSignIn={handleSignIn} onRegister={handleRegister}/>}
         />
+        <Route  path="/missions" element={<Missions missions={missions} />}/>
+        <Route  path="/about" element={<AboutPage />}/>
       </Routes>
     </div>
   );

@@ -14,11 +14,14 @@ function AuthPage(props) {
     <p>LOADING</p>;
   }
 
+
   function openRegister() {
     card.style.transform = "rotateY(-180deg)";
   }
 
-    function openLogin() {
+
+
+  function openLogin() {
       card.style.transform = "rotateY(0deg)";
     }
 
@@ -29,7 +32,7 @@ function AuthPage(props) {
           <div className="card-front">
             <h2>LOGIN</h2>
             {/* --------------------- LOG IN FORM --------------------------------*/}
-            <form onSubmit={onSignIn} action="">
+            <form onSubmit={onSignIn} >
               <input
                 type="email"
                 name="email"

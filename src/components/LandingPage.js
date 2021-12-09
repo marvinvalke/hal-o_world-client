@@ -6,7 +6,7 @@ import AboutPage from './AboutPage';
 import Missions from './Missions';
 import {useState, useEffect} from 'react'
 import axios from "axios";
-import {API_URL} from './config';
+import {API_URL} from '../config';
 
 function LandingPage(props) {
 
@@ -17,7 +17,7 @@ function LandingPage(props) {
         useEffect(() => {
             const fetchData = async () => {
             let response  = await axios.get(`${API_URL}/missions`, {withCredentials: true})
-            console.log(response.data)
+            setMissions(response.data)
             
         }
         fetchData()

@@ -20,6 +20,7 @@ function ApodImg() {
   }
 
   const { title, hdurl, date } = picture;
+ 
   return (
     <div>
       <h1>{title}</h1>

@@ -1,10 +1,13 @@
 // import {Navbar, Nav, NavItem } from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import React from 'react';
+import {useContext} from 'react'
+import {UserContext} from '../context/app.context'
 
-
+// someting ? (<p></p>) : (<p></p>)
 function MyNav(props) {
-
+    
+    const {user} = useContext(UserContext)
    
     return (
                 
@@ -12,7 +15,16 @@ function MyNav(props) {
             <Link to="/" className='nav-link' color="inherit">Home</Link>
             <Link to="/missions" className='nav-link' color="inherit">Missions</Link>
             <Link to="/about" className='nav-link' color="inherit">About us</Link>
-            <Link to="/signin" className='nav-link' color="inherit">Take me in</Link>          
+            {
+					user ? (
+						<Link to="/apod">SEE APOD</Link>
+					) : (
+						<>
+						<Link to="/signin" className='nav-link' color="inherit">Take me in</Link> 
+						</>
+					)
+				}
+                     
 
 
             {/* <Navbar inverse collapseOnSelect>

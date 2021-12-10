@@ -21,7 +21,7 @@ function App() {
   const [myError, setError] = useState(null);
   const [missionName, setMissionName] = useState([])
   const navigate = useNavigate();
-  
+  const [bDayPic , setBDayPic] = useState(null);
   //-----------------------------------------------
 
   // SIGN IN FUNCTION---------------------------
@@ -63,8 +63,8 @@ function App() {
   }
   //-------------------------------------------------
 
-
-
+ 
+  //-------------------------------------------------
   return (
     <div className="App">
       

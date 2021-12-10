@@ -6,11 +6,12 @@ import { HALO_URL } from "../config";
 import axios from "axios";
 
 
-function Missions() {
+function Missions(props) {
 
      
     const [missions, setMissions] = useState([]) //to store missions info
     const [missionsCopy, setMissionsCopy] = useState(missions) //new state with missions copy to be filtered by the search bar
+    
     const navigate = useNavigate();
 
     //------------------fetching info from the api -------------------------
@@ -48,8 +49,8 @@ function Missions() {
         }
     //-----------------------------------------------------------------
     
-  
-   
+ 
+   const {applyClick} = props
 
     return (
         <div>
@@ -66,7 +67,9 @@ function Missions() {
                                 <Card.Img variant="top" src={elem.image} />
                                 <Card.Body>
                                    <Link to={`/missions/${elem._id}`}><Card.Title >Mission: {elem.name}</Card.Title></Link>                                
-                                    <Button variant="primary" Link to={'/profile'}>Apply for this!</Button>
+                                    <Link to={'/profile'}>
+                                    <Button applyClick variant="primary" >Apply for this!</Button>
+                                    </Link>
                                 </Card.Body>
                             </Card>
                         </div>

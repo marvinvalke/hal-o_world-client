@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {Spinner, Card, ListGroup, ListGroupItem, Accordion, Button} from 'react-bootstrap';
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import SearchBar from './SearchBar';
 import { HALO_URL } from "../config";
 import axios from "axios";
@@ -11,7 +11,8 @@ function Missions() {
      
     const [missions, setMissions] = useState([]) //to store missions info
     const [missionsCopy, setMissionsCopy] = useState(missions) //new state with missions copy to be filtered by the search bar
-    
+    const navigate = useNavigate();
+
     //------------------fetching info from the api -------------------------
      useEffect(() => {
         const fetchData = async () => {
@@ -22,6 +23,12 @@ function Missions() {
     fetchData()
     }, [])
     //-----------------------------------------------------------------
+
+    // conditional rendering for when user updates------------
+      useEffect(() => {
+        navigate('/')
+    }, [missions])
+    //-------------------------------------------------
 
     //------------------loading content from api -------------------------
     if( !missionsCopy.length) {
@@ -40,7 +47,8 @@ function Missions() {
             setMissionsCopy(filteredMission)
         }
     //-----------------------------------------------------------------
-
+    
+  
    
 
     return (

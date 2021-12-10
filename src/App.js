@@ -8,6 +8,9 @@ import { UserContext } from "./context/app.context";
 import AuthPage from "./components/AuthPage";
 import AboutPage from './components/AboutPage';
 import Missions from './components/Missions';
+import Profile from "./components/Profile";
+import Apod from "./components/Apod";
+import ApodImg from "./components/ApodImg";
 
 
 function App() {
@@ -30,7 +33,7 @@ function App() {
         withCredentials: true,
       });
       setUser(response.data);
-      navigate('/')
+      navigate('/profile')
     } catch (err) {
       //console.log(err.response)
       setError(err.response.data);
@@ -81,6 +84,9 @@ function App() {
         />
         <Route  path="/missions" element={<Missions missions={missions} />}/>
         <Route  path="/about" element={<AboutPage />}/>
+        <Route  path="/profile" element={<Profile />}/>
+        <Route  path="/apod" element={<Apod />}/>
+        <Route  path="/apod/img" element={<ApodImg />}/>
       </Routes>
     </div>
   );

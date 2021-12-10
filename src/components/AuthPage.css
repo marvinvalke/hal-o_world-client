@@ -4,15 +4,19 @@
   padding: 0;
 }
 
-.container {
+.login-container {
   width: 100%;
   height: 100vh;
   font-family: sans-serif;
-  background: rgb(0, 0, 0);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(https://images-assets.nasa.gov/image/as11-44-6551/as11-44-6551~orig.jpg);
+ /*  https://images-assets.nasa.gov/image/PIA04921/PIA04921~large.jpg */
+  background-repeat: no-repeat;
+  background-size: cover;
   color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 0;
 }
 
 .card {
@@ -38,7 +42,7 @@
   height: 100%;
   background-position: center;
   background-size: cover;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(4, 4, 20, 0.8)),
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
     url(https://images-assets.nasa.gov/image/iss050e066094/iss050e066094~medium.jpg);
   padding: 55px;
   box-sizing: border-box;

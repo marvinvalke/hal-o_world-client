@@ -6,8 +6,8 @@ import { HALO_URL } from "./config";
 import axios from "axios";
 import { UserContext } from "./context/app.context";
 import AuthPage from "./components/AuthPage";
-import AboutPage from './AboutPage';
-import Missions from './Missions';
+import AboutPage from './components/AboutPage';
+import Missions from './components/Missions';
 
 
 function App() {
@@ -30,6 +30,7 @@ function App() {
         withCredentials: true,
       });
       setUser(response.data);
+      navigate('/')
     } catch (err) {
       //console.log(err.response)
       setError(err.response.data);

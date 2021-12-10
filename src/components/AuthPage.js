@@ -26,7 +26,7 @@ function AuthPage(props) {
     }
 
   return (
-    <div className="container">
+    <div className="login-container">
       <div className="card">
         <div className="inner-box" id="card">
           <div className="card-front">
@@ -46,7 +46,7 @@ function AuthPage(props) {
                 className="input-box"
                 placeholder="Password"
                 required
-                helpertext={props.myError ? props.myError : ""}
+                FormHelperText={props.myError ? props.myError : ""}
                 error={props.myError ? true : false}
               />
               <button type="submit" className="submit-btn">
@@ -54,7 +54,7 @@ function AuthPage(props) {
               </button>
             </form>
             {/*-------------- SWITCH TO REGISTER FORM ---------------------*/}
-            <button type="button" className="btn" onClick={openRegister}>
+            <button type="button" className="flip-btn" onClick={openRegister}>
               I'm New Up Here 
             </button>
           </div>
@@ -87,7 +87,7 @@ function AuthPage(props) {
                 Submit
               </button>
             </form>
-            <button type="button" className="btn" onClick={openLogin}>
+            <button type="button" className="flip-btn" onClick={openLogin}>
               I'm already an Astronaut
             </button>
           </div>

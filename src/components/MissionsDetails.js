@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {useParams, Navigate} from 'react-router-dom';
+import {useParams, Navigate, Link} from 'react-router-dom';
 import { HALO_URL } from "../config";
 import axios from "axios";
 import {Spinner, Card, ListGroup, ListGroupItem, Button} from 'react-bootstrap';
@@ -49,8 +49,12 @@ function MissionsDetails() {
                 <ListGroupItem>Rating: add reviews rating</ListGroupItem>                                               
             </ListGroup>
             <Card.Body>
-                <Button variant="outline-success" Link to={'/profile'}>Edit Mission</Button>{' '}
-                <Button variant="outline-success" Link to={'/profile'}>Apply for this!</Button>{' '}
+                <Link to={`/missions/${missionsDetail._id}/edit`}>
+                    <Button variant="outline-success">Edit mission</Button>{' '}
+                </Link>
+                <Link to={'/profile'}>
+                    <Button variant="outline-success">Apply</Button>{' '}
+                </Link>
             </Card.Body>
             </Card>
         </div>

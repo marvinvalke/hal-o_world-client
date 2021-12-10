@@ -6,14 +6,13 @@ import { HALO_URL } from "../config";
 import axios from "axios";
 
 
-function Missions(props) {
+function Missions() {
 
-    // const {missions} = props
-    
+     
     const [missions, setMissions] = useState([]) //to store missions info
     const [missionsCopy, setMissionsCopy] = useState(missions) //new state with missions copy to be filtered by the search bar
     
-
+    //------------------fetching info from the api -------------------------
      useEffect(() => {
         const fetchData = async () => {
         let response  = await axios.get(`${HALO_URL}/missions`, {withCredentials: true})
@@ -22,13 +21,15 @@ function Missions(props) {
     }
     fetchData()
     }, [])
+    //-----------------------------------------------------------------
 
+    //------------------loading content from api -------------------------
     if( !missionsCopy.length) {
         return <Spinner animation="border" role="status">
                 <span className="visually-hidden">Loading...</span>
              </Spinner>
     }
-
+    //-----------------------------------------------------------------
 
     //------------------handle search content -------------------------
         const handleSearch = (event) => {
@@ -41,7 +42,6 @@ function Missions(props) {
     //-----------------------------------------------------------------
 
    
-
 
     return (
         <div>
@@ -57,7 +57,7 @@ function Missions(props) {
                             <Card style={{ width: '18rem', height: '25rem' }}>
                                 <Card.Img variant="top" src={elem.image} />
                                 <Card.Body>
-                                    <Card.Title>Mission: {elem.name}</Card.Title>                                    
+                                    <Card.Title ><Link to={`/missions/${elem.name}`}>Mission: {elem.name}</Link></Card.Title>                                    
                                     <Button variant="primary" Link to={'/profile'}>Apply for this!</Button>
                                 </Card.Body>
                             </Card>

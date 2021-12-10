@@ -57,11 +57,7 @@ function App() {
   }
   //-------------------------------------------------
 
-// MISSIONS PAGE------------------------------------------------------------------
- 
-        //create useEffect to mount missions component and fetch info into api/db
-        
-  //-------------------------------------------------
+
 
   return (
     <div className="App">

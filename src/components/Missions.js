@@ -1,17 +1,20 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import {Spinner, Card, ListGroup, ListGroupItem, Accordion, Button} from 'react-bootstrap';
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import SearchBar from './SearchBar';
 import { HALO_URL } from "../config";
 import axios from "axios";
+import { UserContext } from "../context/app.context";
 
 
-function Missions() {
+function Missions(props) {
 
-     
+    const {user} = useContext(UserContext) 
     const [missions, setMissions] = useState([]) //to store missions info
     const [missionsCopy, setMissionsCopy] = useState(missions) //new state with missions copy to be filtered by the search bar
     
+    const navigate = useNavigate();
+
     //------------------fetching info from the api -------------------------
      useEffect(() => {
         const fetchData = async () => {
@@ -22,6 +25,12 @@ function Missions() {
     fetchData()
     }, [])
     //-----------------------------------------------------------------
+
+    // conditional rendering for when user updates------------
+    //   useEffect(() => {
+    //     navigate('/')
+    // }, [missions])
+    //-------------------------------------------------
 
     //------------------loading content from api -------------------------
     if( !missionsCopy.length) {
@@ -40,8 +49,9 @@ function Missions() {
             setMissionsCopy(filteredMission)
         }
     //-----------------------------------------------------------------
-
-   
+    
+ 
+   const {applyClick} = props
 
     return (
         <div>
@@ -57,8 +67,17 @@ function Missions() {
                             <Card style={{ width: '18rem', height: '25rem' }}>
                                 <Card.Img variant="top" src={elem.image} />
                                 <Card.Body>
-                                   <Link to={`/missions/${elem._id}`}><Card.Title >Mission: {elem.name}</Card.Title></Link>                                
-                                    <Button variant="primary" Link to={'/profile'}>Apply for this!</Button>
+                                   <Link to={`/missions/${elem._id}`}><Card.Title >Mission: {elem.name}</Card.Title></Link>  
+                                   {
+                                       user? (
+                                      <Link to={'/profile'}>
+                                        <Button onClick={applyClick} variant="primary" >Apply for this!</Button>
+                                      </Link>  
+                                    ) : (
+                                      <Link to={'/signin'}></Link>
+                                       )
+                                   }                              
+                                   
                                 </Card.Body>
                             </Card>
                         </div>

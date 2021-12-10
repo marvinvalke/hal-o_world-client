@@ -71,8 +71,8 @@ function App() {
           element={<AuthPage myError={myError} onSignIn={handleSignIn} onRegister={handleRegister}/>}
         />
         <Route  path="/missions" element={<Missions  />}/>
-        <Route  path="/missions/:missionName" element={<MissionsDetails missionName={missionName} />}/>
-        <Route  path="/missions/:missionName/edit" />
+        <Route  path="/missions/:missionId" element={<MissionsDetails />}/>
+        <Route  path="/missions/:missionId/edit" />
         <Route  path="/about" element={<AboutPage />}/>
       </Routes>
     </div>

@@ -4,16 +4,17 @@ import { HALO_URL } from "../config";
 import axios from "axios";
 import {Spinner, Card, ListGroup, ListGroupItem, Button} from 'react-bootstrap';
 
-function MissionsDetails(props) {
+function MissionsDetails() {
 
-    const {missionName} = useParams();
-    const [missionsDetail, setMissionsDetail] = useState(null);
+    const {missionId} = useParams();
+    const [missionsDetail, setMissionsDetail] = useState(missionId);
+    console.log(missionsDetail)
 
     //-----------------------axios req to fetch info from the selected mission------------------
     useEffect(() => {
         const fetchData = async () => {
             
-           let response = await axios.get(`${HALO_URL}/missions/${missionName}`, {withCredentials: true})
+           let response = await axios.get(`${HALO_URL}/missions/${missionId}`, {withCredentials: true})
            setMissionsDetail(response.data)
         }
         fetchData()
@@ -35,18 +36,16 @@ function MissionsDetails(props) {
         
     
     return (
-        <div>
-                  
-
+        <div>                  
             <Card style={{ width: '18rem' }}>
-            <Card.Img variant="top" src={missionName.image} />
+            <Card.Img variant="top" src={missionsDetail.image} />
             <Card.Body>
-                <Card.Title>Mission: {missionName.name}</Card.Title>
-                <Card.Text> {missionName.description}</Card.Text>
+                <Card.Title>Mission: {missionsDetail.name}</Card.Title>
+                <Card.Text> {missionsDetail.description}</Card.Text>
             </Card.Body>
             <ListGroup className="list-group-flush">
-                <ListGroupItem>Duration: {missionName.duration} months</ListGroupItem>
-                <ListGroupItem>Difficulty: {missionName.difficulty}</ListGroupItem>  
+                <ListGroupItem>Duration: {missionsDetail.duration} months</ListGroupItem>
+                <ListGroupItem>Difficulty: {missionsDetail.difficulty}</ListGroupItem>  
                 <ListGroupItem>Rating: add reviews rating</ListGroupItem>                                               
             </ListGroup>
             <Card.Body>

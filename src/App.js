@@ -15,6 +15,7 @@ function App() {
   const { user, setUser } = useContext(UserContext);
   const [myError, setError] = useState(null);
   const navigate = useNavigate();
+  
   //-----------------------------------------------
 
   // SIGN IN FUNCTION---------------------------
@@ -57,17 +58,9 @@ function App() {
   //-------------------------------------------------
 
 // MISSIONS PAGE------------------------------------------------------------------
-  const [missions, setMissions] = useState([]) //to store missions info
-
+ 
         //create useEffect to mount missions component and fetch info into api/db
-        useEffect(() => {
-            const fetchData = async () => {
-            let response  = await axios.get(`${HALO_URL}/missions`, {withCredentials: true})
-            setMissions(response.data)
-            
-        }
-        fetchData()
-        }, [])
+        
   //-------------------------------------------------
 
   return (
@@ -79,7 +72,7 @@ function App() {
           path="/signin"
           element={<AuthPage myError={myError} onSignIn={handleSignIn} onRegister={handleRegister}/>}
         />
-        <Route  path="/missions" element={<Missions missions={missions} />}/>
+        <Route  path="/missions" element={<Missions  />}/>
         <Route  path="/about" element={<AboutPage />}/>
       </Routes>
     </div>

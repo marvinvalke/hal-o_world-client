@@ -11,7 +11,7 @@ function EditMission(props) {
     const [missionsDetail, setMissionsDetail] = useState(missionId);
     const {editButton} = props;
 
-    //-----------------------axios req to fetch info from the selected mission------------------
+    //-----axios req to fetch info from the selected mission--------------
     useEffect(() => {
         const fetchData = async () => {
             
@@ -20,14 +20,14 @@ function EditMission(props) {
         }
         fetchData()
     }, [])
-    //---------------------------------------------------------------
+    //--------------------------------------------------------------------
     //------------------loading content from api -------------------------
     if( !missionsDetail) {
         return <Spinner animation="border" role="status">
                 <span className="visually-hidden">Loading...</span>
             </Spinner>
     }
-    //-----------------------------------------------------------------
+    //-------------------------------------------------------------------
 
     return (
         <div>
@@ -46,12 +46,11 @@ function EditMission(props) {
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                 <Form.Label>Mission's duration:</Form.Label>
-                <Form.Control type="text" placeholder="{missionsDetail.duration} months" />
+                <Form.Control type="text" placeholder={missionsDetail.duration} />
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                 <Form.Label>Mission's difficulty:</Form.Label>
-                    <DifficultyLevel />
-                {/* <Form.Control type="text" placeholder={missionsDetail.name} /> */}
+                    <DifficultyLevel />                
             </Form.Group>
             </Form> 
         </div>

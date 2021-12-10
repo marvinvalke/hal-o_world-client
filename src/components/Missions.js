@@ -25,9 +25,9 @@ function Missions() {
     //-----------------------------------------------------------------
 
     // conditional rendering for when user updates------------
-      useEffect(() => {
-        navigate('/')
-    }, [missions])
+    //   useEffect(() => {
+    //     navigate('/')
+    // }, [missions])
     //-------------------------------------------------
 
     //------------------loading content from api -------------------------

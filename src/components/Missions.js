@@ -57,7 +57,7 @@ function Missions() {
                             <Card style={{ width: '18rem', height: '25rem' }}>
                                 <Card.Img variant="top" src={elem.image} />
                                 <Card.Body>
-                                    <Card.Title ><Link to={`/missions/${elem._id}`}>Mission: {elem.name}</Link></Card.Title>                                    
+                                   <Link to={`/missions/${elem._id}`}><Card.Title >Mission: {elem.name}</Card.Title></Link>                                
                                     <Button variant="primary" Link to={'/profile'}>Apply for this!</Button>
                                 </Card.Body>
                             </Card>

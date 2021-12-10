@@ -8,7 +8,7 @@ function MissionsDetails() {
 
     const {missionId} = useParams();
     const [missionsDetail, setMissionsDetail] = useState(missionId);
-    console.log(missionsDetail)
+    // console.log(missionsDetail)
 
     //-----------------------axios req to fetch info from the selected mission------------------
     useEffect(() => {

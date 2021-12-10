@@ -9,6 +9,7 @@ import AuthPage from "./components/AuthPage";
 import AboutPage from './components/AboutPage';
 import Missions from './components/Missions';
 import MissionsDetails from "./components/MissionsDetails";
+import EditMission from "./components/EditMission";
 
 
 function App() {
@@ -71,8 +72,8 @@ function App() {
           element={<AuthPage myError={myError} onSignIn={handleSignIn} onRegister={handleRegister}/>}
         />
         <Route  path="/missions" element={<Missions  />}/>
-        <Route  path="/missions/:missionId" element={<MissionsDetails />}/>
-        <Route  path="/missions/:missionId/edit" />
+        <Route  path="/missions/:missionId" element={ <MissionsDetails /> }/>
+        <Route  path="/missions/:missionId/edit" element={ <EditMission /> }/>
         <Route  path="/about" element={<AboutPage />}/>
       </Routes>
     </div>

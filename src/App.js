@@ -11,13 +11,17 @@ import Missions from './components/Missions';
 import Profile from "./components/Profile";
 import Apod from "./components/Apod";
 import ApodImg from "./components/ApodImg";
+import MissionsDetails from "./components/MissionsDetails";
+import EditMission from "./components/EditMission";
 
 
 function App() {
   // STATES HOOKS AND CONTEXT----------------------------
   const { user, setUser } = useContext(UserContext);
   const [myError, setError] = useState(null);
+  const [missionName, setMissionName] = useState([])
   const navigate = useNavigate();
+  
   //-----------------------------------------------
 
   // SIGN IN FUNCTION---------------------------
@@ -59,19 +63,7 @@ function App() {
   }
   //-------------------------------------------------
 
-// MISSIONS PAGE------------------------------------------------------------------
-  const [missions, setMissions] = useState([]) //to store missions info
 
-        //create useEffect to mount missions component and fetch info into api/db
-        useEffect(() => {
-            const fetchData = async () => {
-            let response  = await axios.get(`${HALO_URL}/missions`, {withCredentials: true})
-            setMissions(response.data)
-            
-        }
-        fetchData()
-        }, [])
-  //-------------------------------------------------
 
   return (
     <div className="App">
@@ -82,7 +74,9 @@ function App() {
           path="/signin"
           element={<AuthPage myError={myError} onSignIn={handleSignIn} onRegister={handleRegister}/>}
         />
-        <Route  path="/missions" element={<Missions missions={missions} />}/>
+        <Route  path="/missions" element={<Missions  />}/>
+        <Route  path="/missions/:missionId" element={ <MissionsDetails /> }/>
+        <Route  path="/missions/:missionId/edit" element={ <EditMission /> }/>
         <Route  path="/about" element={<AboutPage />}/>
         <Route  path="/profile" element={<Profile />}/>
         <Route  path="/apod" element={<Apod />}/>

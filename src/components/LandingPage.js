@@ -3,7 +3,7 @@ import MyNav from './MyNav';
 
 
 function LandingPage() {
- 
+  
   
 
     return (

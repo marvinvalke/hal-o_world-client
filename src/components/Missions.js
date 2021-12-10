@@ -1,5 +1,5 @@
 import React from 'react';
-import {Spinner} from 'react-bootstrap';
+import {Spinner, Card, ListGroup, ListGroupItem, Accordion, Button} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 
 
@@ -21,12 +21,39 @@ function Missions(props) {
             {
                 missions.map((elem) => {
                     return (
-                        <>
-                        <Link to={`/missions`} >{elem.name}</Link>
-                        </>
+                        <div className="container-card" >
+                        <Card style={{ width: '15rem'}}>
+                            <Card.Img variant="top" src={elem.image}/>
+                            <Card.Body>
+                                <Card.Title>Mission: {elem.name}</Card.Title>
+
+                                <Accordion >
+                                    <Accordion.Item eventKey="0">
+                                        <Accordion.Header>See details</Accordion.Header>
+                                        <Accordion.Body>
+                                             <Card.Text>{elem.description}</Card.Text>
+                                             <ListGroup className="list-group-flush">
+                                                <ListGroupItem>Duration: {elem.duration} months</ListGroupItem>
+                                                <ListGroupItem>Difficulty: {elem.difficulty}</ListGroupItem>                                                
+                                            </ListGroup>
+                                        </Accordion.Body>
+                                    </Accordion.Item> 
+                                   </Accordion> 
+                                 </Card.Body>
+                               <Card.Body>
+                               <ListGroupItem>Reviews</ListGroupItem>
+                               <Button variant="outline-success" Link to={'/profile'}>Apply for this!</Button>{' '}
+                             {/* <Card.Link to={'/profile'}></Card.Link> */}
+                         
+                            </Card.Body>
+                        </Card> 
+                        </div>
                     )
                 })
             }
+
+
+                        
             
         </div>
         

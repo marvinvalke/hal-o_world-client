@@ -8,12 +8,14 @@ import { UserContext } from "./context/app.context";
 import AuthPage from "./components/AuthPage";
 import AboutPage from './components/AboutPage';
 import Missions from './components/Missions';
+import MissionsDetails from "./components/MissionsDetails";
 
 
 function App() {
   // STATES HOOKS AND CONTEXT----------------------------
   const { user, setUser } = useContext(UserContext);
   const [myError, setError] = useState(null);
+  const [missionName, setMissionName] = useState([])
   const navigate = useNavigate();
   
   //-----------------------------------------------
@@ -69,6 +71,8 @@ function App() {
           element={<AuthPage myError={myError} onSignIn={handleSignIn} onRegister={handleRegister}/>}
         />
         <Route  path="/missions" element={<Missions  />}/>
+        <Route  path="/missions/:missionName" element={<MissionsDetails missionName={missionName} />}/>
+        <Route  path="/missions/:missionName/edit" />
         <Route  path="/about" element={<AboutPage />}/>
       </Routes>
     </div>

@@ -13,6 +13,7 @@ import ApodImg from "./components/ApodImg";
 import MissionsDetails from "./components/MissionsDetails";
 import EditMission from "./components/EditMission";
 import StarrySky from "./components/Stars";
+import MyMissions from "./components/MyMissions";
 
 function App() {
   // STATES HOOKS AND CONTEXT----------------------------
@@ -112,6 +113,9 @@ function App() {
          }
   //-------------------------------------------------------------
 
+         
+
+
   return (
     <div className="App">
       <LandingPage />
@@ -126,22 +130,14 @@ function App() {
               onRegister={handleRegister}
             />
           }
-        />
-        <Route
-          path="/missions"
-          element={<Missions applyClick={applyClick} />}
-        />
-        <Route path="/missions/:missionId" element={<MissionsDetails />} />
-        <Route
-          path="/missions/:missionId/edit"
-          element={<EditMission editButton={handleEdit} />}
-        />
+        />       
         <Route  path="/missions" element={<Missions applyClick={applyClick} editButton={handleEdit}/>}/>
-        <Route  path="/missions/:missionId" element={ <MissionsDetails  /> }/>
-        <Route  path="/missions/:missionId/edit" element={ <EditMission editButton={handleEdit}/> }/>
+        <Route  path="/missions/:id" element={ <MissionsDetails  /> }/>
+        <Route  path="/missions/:id/edit" element={ <EditMission editButton={handleEdit}/> }/>
         <Route  path="/about" element={<AboutPage />}/>
-        <Route  path="/profile"/>
-        <Route  path="/profile/mymissions" element={<Profile />}/>
+        <Route  path="/profile" element={<Profile />}/>
+        <Route  path="/profile/create" />
+        <Route  path="/profile/mymissions" element={<MyMissions />}/>
         <Route  path="/apod" element={<Apod />}/>
         <Route  path="/apod/img" element={<ApodImg />}/>
       </Routes>

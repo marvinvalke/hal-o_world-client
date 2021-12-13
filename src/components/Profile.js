@@ -11,7 +11,7 @@ function Profile(props) {
 
     const [user, setUser] = useState(null);
     const {userId} = useParams()
-    const [applyMission, setApplyMission] = useState([]);
+   
 
     // console.log(user)
     useEffect(()=>{
@@ -26,23 +26,14 @@ function Profile(props) {
     },[])
 
 
-    useEffect(()=>{
-      async function getData(){
-          
-          let response = await axios.get(`${HALO_URL}/profile/mymissions`,{withCredentials: true})
-          setApplyMission(response.data.MissionsAdded)
-          console.log(response.data.MissionsAdded)
-      }
-
-      getData()
-
-  },[])
     
     if(!user){
         return <Spinner animation="border" role="status">
         <span className="visually-hidden">Loading...</span>
         </Spinner>
     }
+
+    
 
     return (
         <div>
@@ -66,29 +57,11 @@ function Profile(props) {
                   variant="filled"
                 />
                 <Link to="/apod">SEE APOD</Link>
-
-                
-              {
-                applyMission.map((elem) => {
-                  return (
-                    <Card style={{ width: '18rem' }}>
-                      <Card.Img variant="top" src={elem.image} />
-                      <Card.Body>
-                        <Card.Title>{elem.name}</Card.Title>
-                        <Card.Text>
-                          {elem.description}
-                        </Card.Text>
-                      </Card.Body>
-                      <ListGroup className="list-group-flush">
-                        <ListGroupItem>Cras justo odio</ListGroupItem>
-                        <ListGroupItem>Dapibus ac facilisis in</ListGroupItem>
-                        <ListGroupItem>Vestibulum at eros</ListGroupItem>
-                      </ListGroup>                      
-                    </Card>
-                  )
-                })   
-              }
-                  
+              
+                <Link to="/profile/mymissions">mymissions</Link>
+                <Link to="/profile/create">create mission</Link>
+              
+              
                    
         </div>
     )

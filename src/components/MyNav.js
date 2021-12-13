@@ -15,9 +15,11 @@ function MyNav(props) {
             <Link to="/" className='nav-link' color="inherit">Home</Link>
             <Link to="/missions" className='nav-link' color="inherit">Missions</Link>
             <Link to="/about" className='nav-link' color="inherit">About us</Link>
+            <Link to="/profile">profile</Link>
             {
 					user ? (
 						<Link to="/apod">SEE APOD</Link>
+                        
 					) : (
 						<>
 						<Link to="/signin" className='nav-link' color="inherit">Take me in</Link> 

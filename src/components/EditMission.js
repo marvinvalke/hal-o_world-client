@@ -35,19 +35,19 @@ function EditMission(props) {
            <Form  onSubmit={(event) => { editButton(event, missionsDetail._id)  }}>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                 <Form.Label>Mission's name:</Form.Label>
-                <Form.Control  type="text" placeholder={missionsDetail.name} />
+                <Form.Control name="name" type="text" placeholder={missionsDetail.name} />
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                 <Form.Label>Mission's description:</Form.Label>
-                <Form.Control  as="textarea" placeholder="Insert mission's description" rows={2} />
+                <Form.Control name="description" as="textarea" placeholder="Insert mission's description" rows={2} />
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                 <Form.Label>Mission's image:</Form.Label>
-                <Form.Control placeholder={missionsDetail.image} />
+                <Form.Control name="image" placeholder={missionsDetail.image} />
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                 <Form.Label>Mission's duration:</Form.Label>
-                <Form.Control  type="text" placeholder={missionsDetail.duration} />
+                <Form.Control name="duration" type="text" placeholder={missionsDetail.duration} />
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                 <Form.Label>Mission's difficulty:</Form.Label>

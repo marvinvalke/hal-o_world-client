@@ -16,7 +16,7 @@ function DifficultyLevel() {
 
     return (
         <div>
-            <Select options={options} />
+            <Select name="difficulty" options={options} />
         </div>
     )
 }

@@ -1,33 +1,38 @@
 // import {Navbar, Nav, NavItem } from 'react-bootstrap';
-import {Link} from 'react-router-dom';
-import React from 'react';
-import {useContext} from 'react'
-import {UserContext} from '../context/app.context'
+import { Link } from "react-router-dom";
+import React from "react";
+import { useContext } from "react";
+import { UserContext } from "../context/app.context";
 
 // someting ? (<p></p>) : (<p></p>)
 function MyNav(props) {
-    
-    const {user} = useContext(UserContext)
-   
-    return (
-                
-        <div>
-            <Link to="/" className='nav-link' color="inherit">Home</Link>
-            <Link to="/missions" className='nav-link' color="inherit">Missions</Link>
-            <Link to="/about" className='nav-link' color="inherit">About us</Link>
-            {
-					user ? (
-						<Link to="/apod">SEE APOD</Link>
-					) : (
-						<>
-						<Link to="/signin" className='nav-link' color="inherit">Take me in</Link> 
-						</>
-					)
-				}
-                     
+  const { user } = useContext(UserContext);
 
+  return (
+    <div>
+      <Link to="/" className="nav-link" color="inherit">
+        Home
+      </Link>
+      <Link to="/missions" className="nav-link" color="inherit">
+        Missions
+      </Link>
+      <Link to="/about" className="nav-link" color="inherit">
+        About us
+      </Link>
+      {user ? (
+        <>
+          <Link to="/apod">SEE APOD</Link>
+          {/*                         <Link to="/logout" className='nav-link' color="inherit">Logout</Link>  */}
+        </>
+      ) : (
+        <>
+          <Link to="/signin" className="nav-link" color="inherit">
+            Take me in
+          </Link>
+        </>
+      )}
 
-            {/* <Navbar inverse collapseOnSelect>
+      {/* <Navbar inverse collapseOnSelect>
                 <Navbar.Header>
                     <Navbar.Brand>
                     <Link to="/" className='nav-link' color="inherit">Home</Link>
@@ -48,9 +53,8 @@ function MyNav(props) {
                     </Nav>
                 </Navbar.Collapse>
                 </Navbar> */}
-
-        </div>       
-    )
+    </div>
+  );
 }
 
-export default MyNav
+export default MyNav;

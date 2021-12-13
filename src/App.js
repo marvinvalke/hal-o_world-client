@@ -13,6 +13,8 @@ import ApodImg from "./components/ApodImg";
 import MissionsDetails from "./components/MissionsDetails";
 import EditMission from "./components/EditMission";
 import StarrySky from "./components/Stars";
+import ProfileEdit from "./components/ProfileEdit";
+import MyNav from "./components/MyNav";
 
 function App() {
   // STATES HOOKS AND CONTEXT----------------------------
@@ -23,6 +25,14 @@ function App() {
   const navigate = useNavigate();
   const [bDayPic, setBDayPic] = useState(null);
   //-----------------------------------------------
+
+
+  const fetchUser = async () => {
+    let response = await axios.get(`${HALO_URL}/profile`, {
+      withCredentials: true,
+    });
+    setUser(response.data);
+  }
 
   // SIGN IN FUNCTION---------------------------
   async function handleSignIn(event) {
@@ -63,14 +73,14 @@ function App() {
 
   // CONDITIONAL RENDERING OF USER CHANGES------------
   useEffect(() => {
-    navigate("/");
+    navigate("/profile");
   }, [user]);
-  //-------------------------------------------------------------
+  //------------
 
   // CONDITIONAL RENDERING OF USER CHANGES------------
-  useEffect(() => {
+  /*   useEffect(() => {
     navigate("/missions");
-  }, [missions]);
+  }, [missions]); */
   //-------------------------------------------------------------
 
   // EDIT BUTTON HANDLING-------------------------------
@@ -91,47 +101,91 @@ function App() {
     );
 
     let updatedMissions = missions.map((elem) => {
-        if (elem._id == id) {
-            elem.name = response.data.name           
-            elem.image = response.data.image
-            elem.description = response.data.description
-            elem.duration = response.data.duration
-            elem.difficulty = response.data.difficulty
-        }
-        return elem
-    })
+      if (elem._id == id) {
+        elem.name = response.data.name;
+        elem.image = response.data.image;
+        elem.description = response.data.description;
+        elem.duration = response.data.duration;
+        elem.difficulty = response.data.difficulty;
+      }
+      return elem;
+    });
 
-    setMissions(updatedMissions)
-}
+    setMissions(updatedMissions);
+  };
   //-------------------------------------------------------------
 
   // APPLY BUTTON HANDLING-------------------------------
-    const applyClick = async (event, mission) => {
+  const applyClick = async (event, mission) => {
+    // let response = await axios.get(`${HALO_URL}/profile/${id}`,  {withCredentials: true})
 
-      
-      // let response = await axios.get(`${HALO_URL}/profile/${id}`,  {withCredentials: true})
+    let response = await axios.post(
+      `${HALO_URL}/profile/missions`,
+      { mission: mission },
+      { withCredentials: true }
+    );
 
-      let response = await axios.post(`${HALO_URL}/profile/missions`, {mission: mission}, {withCredentials: true});
-
-      // let appliedMissions = missions.map((elem) =>{
-      //   if (elem._id == id) {
-      //     elem.name = response.data.name           
-      //     elem.image = response.data.image
-      //     elem.description = response.data.description
-      //     elem.duration = response.data.duration
-      //     elem.difficulty = response.data.difficulty
-      // }
-      // return elem
-      // })                  
-      // setApplyMission(appliedMissions)
-      // console.log(appliedMissions)
-    }
+    // let appliedMissions = missions.map((elem) =>{
+    //   if (elem._id == id) {
+    //     elem.name = response.data.name
+    //     elem.image = response.data.image
+    //     elem.description = response.data.description
+    //     elem.duration = response.data.duration
+    //     elem.difficulty = response.data.difficulty
+    // }
+    // return elem
+    // })
+    // setApplyMission(appliedMissions)
+    // console.log(appliedMissions)
+  };
   //-------------------------------------------------------------
+
+  //--------EDIT PROFILE FUNCTION-------------------
+
+  async function handleEditUser(event, id) {
+    event.preventDefault();
+    let editedUser = {
+      username: event.target.username.value,
+      email: event.target.email.value,
+      password: event.target.password.value,
+    };
+    
+    let response = await axios.patch(
+      `${HALO_URL}/profile/${id}/edit`,
+      editedUser,
+      {
+        withCredentials: true,
+      }
+    );
+
+
+
+    /*   let updatedUser = user.map((elem) => {
+      if (elem._id == id) {
+        elem.username = response.data.username;
+        elem.email = response.data.email;
+      }
+      return elem;
+    }); */
+
+    await fetchUser();
+    setUser(response.data)
+    navigate("/profile");
+    console.log("is it working ?", user);
+  }
+
+  /*  const handleLogout = async () => {
+    await axios.post(`${HALO_URL}/logout`, {}, { withCredentials: true });
+    setUser([]);
+  };
+ */
+  //-------------------------------------------------
 
   return (
     <div className="App">
-      <LandingPage />
       <StarrySky />
+      <MyNav /*onLogout={handleLogout}*/ />
+      <LandingPage />
       <Routes>
         <Route
           path="/signin"
@@ -143,6 +197,7 @@ function App() {
             />
           }
         />
+        <Route path="/" element={<LandingPage />} />
         <Route
           path="/missions"
           element={<Missions applyClick={applyClick} />}
@@ -152,13 +207,26 @@ function App() {
           path="/missions/:missionId/edit"
           element={<EditMission editButton={handleEdit} />}
         />
-        <Route  path="/missions" element={<Missions applyClick={applyClick} />}/>
-        <Route  path="/missions/:missionId" element={ <MissionsDetails  /> }/>
-        <Route  path="/missions/:missionId/edit" element={ <EditMission editButton={handleEdit}/> }/>
-        <Route  path="/about" element={<AboutPage />}/>
-        <Route  path="/profile" element={<Profile applyMission={applyMission} />}/>
-        <Route  path="/apod" element={<Apod />}/>
-        <Route  path="/apod/img" element={<ApodImg />}/>
+        <Route
+          path="/missions"
+          element={<Missions applyClick={applyClick} />}
+        />
+        <Route path="/missions/:missionId" element={<MissionsDetails />} />
+        <Route
+          path="/missions/:missionId/edit"
+          element={<EditMission editButton={handleEdit} />}
+        />
+        <Route path="/about" element={<AboutPage />} />
+        <Route
+          path="/profile"
+          element={<Profile applyMission={applyMission} />}
+        />
+        <Route
+          path="/profile/:id/edit"
+          element={<ProfileEdit btnEdit={handleEditUser} />}
+        />
+        <Route path="/apod" element={<Apod />} />
+        <Route path="/apod/img" element={<ApodImg />} />
       </Routes>
     </div>
   );

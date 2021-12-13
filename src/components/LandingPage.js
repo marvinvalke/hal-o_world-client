@@ -6,7 +6,7 @@ import Profile from "./Profile";
 function LandingPage() {
   return (
     <div>
-      <MyNav />
+      
       <Chatbot />
     </div>
   );

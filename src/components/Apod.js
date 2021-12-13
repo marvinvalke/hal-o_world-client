@@ -37,6 +37,17 @@ function Apod(props) {
     setDateEntered(true);
   }
 
+  function handleGoBack(event) {
+    event.preventDefault();
+    async function getData() {
+      let response = await axios.get(`${HALO_URL}/nasa`);
+
+      setPicture(response.data);
+      setDateEntered(false);
+    }
+    getData();
+  }
+
   useEffect(() => {
     async function getData() {
       let response = await axios.get(`${HALO_URL}/nasa`);
@@ -60,14 +71,13 @@ function Apod(props) {
       {dateEntered ? (
         <>
           <Card sx={{ maxWidth: 345 }}>
-            <Link to={bDayPic.url}>
-              <CardMedia
+           
+              <CardMedia 
                 component="img"
                 height="140"
                 image={bDayPic.url}
-                alt="green iguana"
+                alt=""
               />
-            </Link>
             <CardContent>
               <Typography gutterBottom variant="h5" component="div">
                 {bDayPic.title}
@@ -80,18 +90,19 @@ function Apod(props) {
               </Typography>
             </CardContent>
           </Card>
+          <Button onClick={handleGoBack} type="submit">
+            Go Back
+          </Button>
         </>
       ) : (
         <>
           <Card sx={{ maxWidth: 345 }}>
-            <Link to="/apod/img">
-              <CardMedia
+             <CardMedia
                 component="img"
                 height="140"
                 image={url}
                 alt="green iguana"
               />
-            </Link>
             <CardContent>
               <Typography gutterBottom variant="h5" component="div">
                 {title}
@@ -106,8 +117,20 @@ function Apod(props) {
           </Card>
 
           <form onSubmit={handleDate}>
-            <input name="day" type="number" placeholder="Enter day" />
-            <input name="month" type="number" placeholder="Enter month" />
+            <input
+              name="day"
+              min="1"
+              max="31"
+              type="number"
+              placeholder="Enter day"
+            />
+            <input
+              name="month"
+              min="1"
+              max="12"
+              type="number"
+              placeholder="Enter month"
+            />
 
             <Button type="submit">Submit</Button>
           </form>

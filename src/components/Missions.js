@@ -19,7 +19,7 @@ function Missions(props) {
      useEffect(() => {
         const fetchData = async () => {
         let response  = await axios.get(`${HALO_URL}/missions`, {withCredentials: true})
-        setMissions(response.data)
+        setMissions(response.data);
         setMissionsCopy(response.data)                
     }
     fetchData()
@@ -87,7 +87,7 @@ function Missions(props) {
                                    {
                                        user? (
                                       <Link to={'/profile'}>
-                                        <Button onClick={(event) => { applyClick(event, missionsCopy._id)  }} variant="primary" >Apply for this!</Button>
+                                        <Button onClick={(event) => { applyClick(event, elem)  }} variant="primary" >Apply for this!</Button>
                                       </Link>  
                                     ) : (
                                       <Link to={'/signin'}><p>Login for application</p></Link>

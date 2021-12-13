@@ -106,22 +106,25 @@ function App() {
   //-------------------------------------------------------------
 
   // APPLY BUTTON HANDLING-------------------------------
-    const applyClick = async (event, id) => {
-      
-      let response = await axios.get(`${HALO_URL}/profile/${id}`,  {withCredentials: true})
+    const applyClick = async (event, mission) => {
 
-      let appliedMissions = missions.map((elem) =>{
-        if (elem._id == id) {
-          elem.name = response.data.name           
-          elem.image = response.data.image
-          elem.description = response.data.description
-          elem.duration = response.data.duration
-          elem.difficulty = response.data.difficulty
-      }
-      return elem
-      })                  
-      setApplyMission(appliedMissions)
-      console.log(appliedMissions)
+      
+      // let response = await axios.get(`${HALO_URL}/profile/${id}`,  {withCredentials: true})
+
+      let response = await axios.post(`${HALO_URL}/profile/missions`, {mission: mission}, {withCredentials: true});
+
+      // let appliedMissions = missions.map((elem) =>{
+      //   if (elem._id == id) {
+      //     elem.name = response.data.name           
+      //     elem.image = response.data.image
+      //     elem.description = response.data.description
+      //     elem.duration = response.data.duration
+      //     elem.difficulty = response.data.difficulty
+      // }
+      // return elem
+      // })                  
+      // setApplyMission(appliedMissions)
+      // console.log(appliedMissions)
     }
   //-------------------------------------------------------------
 

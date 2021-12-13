@@ -19,6 +19,7 @@ function App() {
   const { user, setUser } = useContext(UserContext);
   const [myError, setError] = useState(null);
   const [missions, setMissions] = useState([]);
+  const [missionsCopy, setMissionsCopy] = useState(missions);
   const [applyMission, setApplyMission] = useState(missions);
   const navigate = useNavigate();
   const [bDayPic, setBDayPic] = useState(null);
@@ -68,14 +69,15 @@ function App() {
   //-------------------------------------------------------------
 
   // CONDITIONAL RENDERING OF USER CHANGES------------
-  useEffect(() => {
-    navigate("/missions");
-  }, [missions]);
+  // useEffect(() => {
+  //   navigate("/missions");
+  // }, [missions]);
   //-------------------------------------------------------------
 
   // EDIT BUTTON HANDLING-------------------------------
   const handleEdit = async (event, id) => {
-    event.preventDefault();
+    console.log('clicked')
+    event.preventDefault();    
     let editedMission = {
       name: event.target.name.value,
       image: event.target.image.value,
@@ -84,13 +86,9 @@ function App() {
       difficulty: event.target.difficulty.value,
     };
 
-    let response = await axios.patch(
-      `${HALO_URL}/missions/${id}`,
-      editedMission,
-      { withCredentials: true }
-    );
+    let response = await axios.patch(`${HALO_URL}/missions/${id}`, editedMission, { withCredentials: true });
 
-    let updatedMissions = missions.map((elem) => {
+    let updatedMissions = missionsCopy.map((elem) => {
         if (elem._id == id) {
             elem.name = response.data.name           
             elem.image = response.data.image
@@ -101,31 +99,17 @@ function App() {
         return elem
     })
 
-    setMissions(updatedMissions)
+    setMissionsCopy(updatedMissions)
 }
   //-------------------------------------------------------------
 
   // APPLY BUTTON HANDLING-------------------------------
-    const applyClick = async (event, mission) => {
+    const applyClick = async (event, id) => {
+
+     await axios.post(`${HALO_URL}/profile/mymissions`, {id}, {withCredentials: true});
 
       
-      // let response = await axios.get(`${HALO_URL}/profile/${id}`,  {withCredentials: true})
-
-      let response = await axios.post(`${HALO_URL}/profile/missions`, {mission: mission}, {withCredentials: true});
-
-      // let appliedMissions = missions.map((elem) =>{
-      //   if (elem._id == id) {
-      //     elem.name = response.data.name           
-      //     elem.image = response.data.image
-      //     elem.description = response.data.description
-      //     elem.duration = response.data.duration
-      //     elem.difficulty = response.data.difficulty
-      // }
-      // return elem
-      // })                  
-      // setApplyMission(appliedMissions)
-      // console.log(appliedMissions)
-    }
+         }
   //-------------------------------------------------------------
 
   return (
@@ -152,11 +136,12 @@ function App() {
           path="/missions/:missionId/edit"
           element={<EditMission editButton={handleEdit} />}
         />
-        <Route  path="/missions" element={<Missions applyClick={applyClick} />}/>
+        <Route  path="/missions" element={<Missions applyClick={applyClick} editButton={handleEdit}/>}/>
         <Route  path="/missions/:missionId" element={ <MissionsDetails  /> }/>
         <Route  path="/missions/:missionId/edit" element={ <EditMission editButton={handleEdit}/> }/>
         <Route  path="/about" element={<AboutPage />}/>
-        <Route  path="/profile" element={<Profile applyMission={applyMission} />}/>
+        <Route  path="/profile"/>
+        <Route  path="/profile/mymissions" element={<Profile />}/>
         <Route  path="/apod" element={<Apod />}/>
         <Route  path="/apod/img" element={<ApodImg />}/>
       </Routes>

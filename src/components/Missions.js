@@ -83,11 +83,19 @@ function Missions(props) {
                             <Card style={{ width: '18rem', height: '25rem' }}>
                                 <Card.Img variant="top" src={elem.image} />
                                 <Card.Body>
-                                   <Link to={`/missions/${elem._id}`}><Card.Title >Mission: {elem.name}</Card.Title></Link>  
+                               
+                                    {
+                                        user? (
+                                        <Link to={`/missions/${elem._id}`}><Card.Title >Mission: {elem.name}</Card.Title></Link> 
+                                        ) : (
+                                            <Link to={'/signin'}> <Card.Title >Mission: {elem.name}</Card.Title></Link>       
+                                        )
+                                    }
+                                    
                                    {
                                        user? (
-                                      <Link to={'/profile'}>
-                                        <Button onClick={(event) => { applyClick(event, elem)  }} variant="primary" >Apply for this!</Button>
+                                      <Link to={`/profile/mymissions`}>
+                                        <Button onClick={(event) => { applyClick(event, elem._id)  }} variant="primary" >Apply for this!</Button>
                                       </Link>  
                                     ) : (
                                       <Link to={'/signin'}><p>Login for application</p></Link>

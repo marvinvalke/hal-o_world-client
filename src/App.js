@@ -156,13 +156,13 @@ function App() {
       let newMission= {
         name: event.target.name.value,
         description: event.target.description.value,
-        image: event.image.description.value,
+        image: event.target.image.value,
         duration: event.target.duration.value,
-      difficulty: event.target.difficulty.value,
+        difficulty: event.target.difficulty.value,
       }
      
       let response = await axios.post(`${HALO_URL}/profile/mymissions/create`, newMission, {withCredentials: true})
-      setMissionsCopy([response.data, ...missionsCopy])
+      console.log([response.data, ...missionsCopy])
      }    
 
 

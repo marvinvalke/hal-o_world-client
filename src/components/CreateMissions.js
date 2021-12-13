@@ -1,7 +1,4 @@
-import React, {useState, useEffect} from 'react';
-import {useParams} from 'react-router-dom';
-import { HALO_URL } from "../config";
-import axios from "axios";
+import React from 'react';
 import {Form, Button} from 'react-bootstrap';
 import DifficultyLevel from './DifficultyLevel';
 
@@ -33,8 +30,9 @@ function CreateMissions(props) {
                 <Form.Label>Mission's difficulty:</Form.Label>
                     <DifficultyLevel />                
             </Form.Group>
-        </Form>                 
             <Button type="submit" variant="outline-success">Save changes</Button>{' '}
+        </Form>                 
+            
         </div>
     )
 }

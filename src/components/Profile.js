@@ -1,17 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { HALO_URL } from "../config";
-import axios from "axios";
-import { useParams, Link, Navigate } from "react-router-dom";
-import {
-  Spinner,
-  Card,
-  ListGroup,
-  ListGroupItem,
-  Accordion,
-  Button,
-} from "react-bootstrap";
-import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
+import axios from 'axios'
+import {useParams, Link, Navigate} from 'react-router-dom'
+import {Spinner, Card, ListGroup, ListGroupItem, Button} from 'react-bootstrap';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+
 
 function Profile(props) {
   const [user, setUser] = useState(null);
@@ -60,19 +54,16 @@ function Profile(props) {
         variant="filled"
       />
       <button>
-        <Link to={`/profile/${user._id}/missions`}>My Missions</Link>
+        <Link to={`/profile/mymissions`}>My Missions</Link>
       </button>
       <button>
-        <Link to={`/missions/create`}>My Missions</Link>
+        <Link to={`/missions/create`}>Create Missions</Link>
       </button>
       <button>
         <Link to={`/profile/${user._id}/edit`}>Edit my profile</Link>
       </button>
 
-      {applyMission.map((elem) => {
-        const { name, image, description, duration, difficulty } = elem;
-        return <ul>{(name, image, description, duration, difficulty)}</ul>;
-      })}
+      
     </div>
   );
 }

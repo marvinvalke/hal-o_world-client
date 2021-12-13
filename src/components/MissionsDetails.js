@@ -1,11 +1,13 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import {useParams, Navigate, Link} from 'react-router-dom';
 import { HALO_URL } from "../config";
 import axios from "axios";
 import {Spinner, Card, ListGroup, ListGroupItem, Button} from 'react-bootstrap';
+import { UserContext } from "../context/app.context";
 
 function MissionsDetails() {
 
+    const {user} = useContext(UserContext) 
     const {missionId} = useParams();
     const [missionsDetail, setMissionsDetail] = useState(missionId);
     // console.log(missionsDetail)

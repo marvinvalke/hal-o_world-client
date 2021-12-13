@@ -50,8 +50,9 @@ function Missions(props) {
         }
     //-----------------------------------------------------------------
     
+    //------------------handle A-Z ordering -------------------------
     const handleNameOrder = () => {
-        let clone = JSON.parse(JSON.stringify(missions))
+        let clone = JSON.parse(JSON.stringify(missionsCopy))
         clone.sort((first, second) => {
             if (first.name > second.name) {
                 return 1
@@ -63,9 +64,18 @@ function Missions(props) {
                 return 0
             }
         })
-        setMissions(clone)
+        setMissionsCopy(clone)
     }
- 
+    // -----------------
+
+    //------------------handle getting a random mission------------------------
+    const handleRandomMission = () => {
+        let randomMission = missionsCopy[Math.floor(Math.random() * missionsCopy.length)]
+    
+        setMissionsCopy([randomMission, ...missionsCopy])
+    }
+    //---------------------------------------------------------------------------
+
    const {applyClick} = props
 
     return (
@@ -75,6 +85,7 @@ function Missions(props) {
             <h3>Pick your favorite one and proceed with your application.</h3>
             <h4>Good luck astronaut!</h4>
             <button onClick={handleNameOrder}>A-Z</button>
+            <button onClick={handleRandomMission}>Get a random Mission</button>
             {
                 missionsCopy.map((elem) => {
                     return (
@@ -83,11 +94,19 @@ function Missions(props) {
                             <Card style={{ width: '18rem', height: '25rem' }}>
                                 <Card.Img variant="top" src={elem.image} />
                                 <Card.Body>
-                                   <Link to={`/missions/${elem._id}`}><Card.Title >Mission: {elem.name}</Card.Title></Link>  
+                               
+                                    {
+                                        user? (
+                                        <Link to={`/missions/${elem._id}`}><Card.Title >Mission: {elem.name}</Card.Title></Link> 
+                                        ) : (
+                                            <Link to={'/signin'}> <Card.Title >Mission: {elem.name}</Card.Title></Link>       
+                                        )
+                                    }
+                                    
                                    {
                                        user? (
-                                      <Link to={'/profile'}>
-                                        <Button onClick={(event) => { applyClick(event, elem)  }} variant="primary" >Apply for this!</Button>
+                                      <Link to={`/profile/mymissions`}>
+                                        <Button onClick={(event) => { applyClick(event, elem._id)  }} variant="primary" >Apply for this!</Button>
                                       </Link>  
                                     ) : (
                                       <Link to={'/signin'}><p>Login for application</p></Link>

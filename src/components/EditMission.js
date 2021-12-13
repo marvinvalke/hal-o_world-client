@@ -10,6 +10,7 @@ function EditMission(props) {
     const {missionId} = useParams();
     const [missionsDetail, setMissionsDetail] = useState(missionId);
     const {editButton} = props;
+    
 
     //-----axios req to fetch info from the selected mission--------------
     useEffect(() => {
@@ -34,33 +35,25 @@ function EditMission(props) {
            <Form  onSubmit={(event) => { editButton(event, missionsDetail._id)  }}>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                 <Form.Label>Mission's name:</Form.Label>
-                <Form.Control  type="text" placeholder={missionsDetail.name} />
+                <Form.Control name="name" type="text" placeholder={missionsDetail.name} />
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                 <Form.Label>Mission's description:</Form.Label>
-                <Form.Control  as="textarea" placeholder="Insert mission's description" rows={2} />
+                <Form.Control name="description" as="textarea" placeholder="Insert mission's description" rows={2} />
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                 <Form.Label>Mission's image:</Form.Label>
-                <Form.Control placeholder={missionsDetail.image} />
+                <Form.Control name="image" placeholder={missionsDetail.image} />
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                 <Form.Label>Mission's duration:</Form.Label>
-                <Form.Control  type="text" placeholder={missionsDetail.duration} />
+                <Form.Control name="duration" type="text" placeholder={missionsDetail.duration} />
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                 <Form.Label>Mission's difficulty:</Form.Label>
                     <DifficultyLevel />                
             </Form.Group>
-            </Form> 
-            
-            {/* <form>
-                <input defaultValue={missionsDetail.name} name="name"  type="text"  placeholder="Enter name"/>
-                <input name="description"  type="text"  placeholder="Enter desc"/>
-                <input name="image"  type="text"  placeholder="Enter desc"/>
-                <input name="duration"  type="text"  placeholder="Enter desc"/>
-                <input name="difficulty"  type="text"  placeholder="Enter desc"/>
-            </form> */}
+            </Form>                      
 
             <Button type="submit" variant="outline-success">Save changes</Button>{' '}
         </div>

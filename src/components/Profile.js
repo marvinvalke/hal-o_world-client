@@ -57,7 +57,7 @@ function Profile(props) {
         <Link to={`/profile/mymissions`}>My Missions</Link>
       </button>
       <button>
-        <Link to={`/missions/create`}>Create Missions</Link>
+        <Link to={`/profile/mymissions/create`}>Create Missions</Link>
       </button>
       <button>
         <Link to={`/profile/${user._id}/edit`}>Edit my profile</Link>

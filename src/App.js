@@ -16,6 +16,7 @@ import StarrySky from "./components/Stars";
 import ProfileEdit from "./components/ProfileEdit";
 import MyNav from "./components/MyNav";
 import MyMissions from "./components/MyMissions";
+import CreateMissions from "./components/CreateMissions";
 
 function App() {
   // STATES HOOKS AND CONTEXT----------------------------
@@ -114,7 +115,7 @@ function App() {
 
   //--------EDIT PROFILE FUNCTION-------------------
 
-  async function handleEditUser(event, id) {
+  const handleEditUser = async (event, id) => {
     event.preventDefault();
     let editedUser = {
       username: event.target.username.value,
@@ -149,7 +150,20 @@ function App() {
          }
   //-------------------------------------------------------------
 
-         
+  // CREATE BUTTON HANDLING-------------------------------
+     const handleCreate = async (event) => {
+      event.preventDefault()
+      let newMission= {
+        name: event.target.name.value,
+        description: event.target.description.value,
+        image: event.image.description.value,
+        duration: event.target.duration.value,
+      difficulty: event.target.difficulty.value,
+      }
+     
+      let response = await axios.post(`${HALO_URL}/profile/mymissions/create`, newMission, {withCredentials: true})
+      setMissionsCopy([response.data, ...missionsCopy])
+     }    
 
 
   return (
@@ -187,7 +201,7 @@ function App() {
         <Route  path="/missions/:id/edit" element={ <EditMission editButton={handleEdit}/> }/>
         <Route  path="/about" element={<AboutPage />}/>
         <Route  path="/profile" element={<Profile />}/>
-        <Route  path="/profile/create" />
+        <Route  path="/profile/mymissions/create" element={<CreateMissions createButton={handleCreate}/>}/>
         <Route  path="/profile/mymissions" element={<MyMissions />}/>
         <Route  path="/apod" element={<Apod />}/>
         <Route  path="/apod/img" element={<ApodImg />}/>

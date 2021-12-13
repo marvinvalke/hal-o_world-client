@@ -20,15 +20,17 @@ function MyMissions() {
     },[])
       
 
-    const handleDelete = async (event, id) => {
+    const handleDelete = async (id) => {
         await axios.delete(`${HALO_URL}/profile/mymissions/${id}`, {withCredentials: true})
         
         let filteredMissions = applyMission.filter((elem) => {
           return elem._id !== id
         })
     
-        console.log(filteredMissions)
+        setApplyMission(filteredMissions)
        }
+
+
     return (
         <div>
             {

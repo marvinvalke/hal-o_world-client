@@ -16,7 +16,7 @@ function DifficultyLevel() {
 
     return (
         <div>
-            <Select name="difficulty" options={options} />
+            <Select name="difficulty" placeholder="Select mission's difficulty" options={options} />
         </div>
     )
 }

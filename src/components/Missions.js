@@ -50,8 +50,9 @@ function Missions(props) {
         }
     //-----------------------------------------------------------------
     
+    //------------------handle A-Z ordering -------------------------
     const handleNameOrder = () => {
-        let clone = JSON.parse(JSON.stringify(missions))
+        let clone = JSON.parse(JSON.stringify(missionsCopy))
         clone.sort((first, second) => {
             if (first.name > second.name) {
                 return 1
@@ -63,9 +64,18 @@ function Missions(props) {
                 return 0
             }
         })
-        setMissions(clone)
+        setMissionsCopy(clone)
     }
- 
+    // -----------------
+
+    //------------------handle getting a random mission------------------------
+    const handleRandomMission = () => {
+        let randomMission = missionsCopy[Math.floor(Math.random() * missionsCopy.length)]
+    
+        setMissionsCopy([randomMission, ...missionsCopy])
+    }
+    //---------------------------------------------------------------------------
+
    const {applyClick} = props
 
     return (
@@ -75,6 +85,7 @@ function Missions(props) {
             <h3>Pick your favorite one and proceed with your application.</h3>
             <h4>Good luck astronaut!</h4>
             <button onClick={handleNameOrder}>A-Z</button>
+            <button onClick={handleRandomMission}>Get a random Mission</button>
             {
                 missionsCopy.map((elem) => {
                     return (

@@ -19,7 +19,7 @@ function App() {
   const { user, setUser } = useContext(UserContext);
   const [myError, setError] = useState(null);
   const [missions, setMissions] = useState([]);
-  const [applyMission, setApplyMission] = useState([]);
+  const [applyMission, setApplyMission] = useState(missions);
   const navigate = useNavigate();
   const [bDayPic, setBDayPic] = useState(null);
   //-----------------------------------------------
@@ -91,37 +91,47 @@ function App() {
     );
 
     let updatedMissions = missions.map((elem) => {
-      if (elem._id == id) {
-        elem.name = response.data.name;
-        elem.image = response.data.image;
-        elem.description = response.data.description;
-        elem.duration = response.data.duration;
-        elem.difficulty = response.data.difficulty;
-      }
-      return elem;
-    });
+        if (elem._id == id) {
+            elem.name = response.data.name           
+            elem.image = response.data.image
+            elem.description = response.data.description
+            elem.duration = response.data.duration
+            elem.difficulty = response.data.difficulty
+        }
+        return elem
+    })
 
-    setMissions(updatedMissions);
-  };
+    setMissions(updatedMissions)
+}
   //-------------------------------------------------------------
 
   // APPLY BUTTON HANDLING-------------------------------
-  const applyClick = (mission) => {
-    let appliedMissions = {
-      name: mission.name,
-      image: mission.image,
-      description: mission.image,
-      duration: mission.duration,
-      difficulty: mission.difficulty,
-    };
-    setApplyMission([appliedMissions, ...applyMission]);
-  };
+    const applyClick = async (event, mission) => {
+
+      
+      // let response = await axios.get(`${HALO_URL}/profile/${id}`,  {withCredentials: true})
+
+      let response = await axios.post(`${HALO_URL}/profile/missions`, {mission: mission}, {withCredentials: true});
+
+      // let appliedMissions = missions.map((elem) =>{
+      //   if (elem._id == id) {
+      //     elem.name = response.data.name           
+      //     elem.image = response.data.image
+      //     elem.description = response.data.description
+      //     elem.duration = response.data.duration
+      //     elem.difficulty = response.data.difficulty
+      // }
+      // return elem
+      // })                  
+      // setApplyMission(appliedMissions)
+      // console.log(appliedMissions)
+    }
   //-------------------------------------------------------------
 
   return (
     <div className="App">
       <LandingPage />
-      {/* <StarrySky /> */}
+      <StarrySky />
       <Routes>
         <Route
           path="/signin"
@@ -142,10 +152,13 @@ function App() {
           path="/missions/:missionId/edit"
           element={<EditMission editButton={handleEdit} />}
         />
-        <Route path="/about" element={<AboutPage />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/apod" element={<Apod />} />
-        <Route path="/apod/img" element={<ApodImg />} />
+        <Route  path="/missions" element={<Missions applyClick={applyClick} />}/>
+        <Route  path="/missions/:missionId" element={ <MissionsDetails  /> }/>
+        <Route  path="/missions/:missionId/edit" element={ <EditMission editButton={handleEdit}/> }/>
+        <Route  path="/about" element={<AboutPage />}/>
+        <Route  path="/profile" element={<Profile applyMission={applyMission} />}/>
+        <Route  path="/apod" element={<Apod />}/>
+        <Route  path="/apod/img" element={<ApodImg />}/>
       </Routes>
     </div>
   );

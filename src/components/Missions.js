@@ -19,7 +19,7 @@ function Missions(props) {
      useEffect(() => {
         const fetchData = async () => {
         let response  = await axios.get(`${HALO_URL}/missions`, {withCredentials: true})
-        setMissions(response.data)
+        setMissions(response.data);
         setMissionsCopy(response.data)                
     }
     fetchData()
@@ -50,6 +50,21 @@ function Missions(props) {
         }
     //-----------------------------------------------------------------
     
+    const handleNameOrder = () => {
+        let clone = JSON.parse(JSON.stringify(missions))
+        clone.sort((first, second) => {
+            if (first.name > second.name) {
+                return 1
+            } 
+            else if (first.name < second.name) {
+                return -1
+            }
+            else {
+                return 0
+            }
+        })
+        setMissions(clone)
+    }
  
    const {applyClick} = props
 
@@ -59,6 +74,7 @@ function Missions(props) {
             <h1>Check out the space missions that we have for you!</h1>
             <h3>Pick your favorite one and proceed with your application.</h3>
             <h4>Good luck astronaut!</h4>
+            <button onClick={handleNameOrder}>A-Z</button>
             {
                 missionsCopy.map((elem) => {
                     return (
@@ -71,10 +87,10 @@ function Missions(props) {
                                    {
                                        user? (
                                       <Link to={'/profile'}>
-                                        <Button onClick={applyClick} variant="primary" >Apply for this!</Button>
+                                        <Button onClick={(event) => { applyClick(event, elem)  }} variant="primary" >Apply for this!</Button>
                                       </Link>  
                                     ) : (
-                                      <Link to={'/signin'}></Link>
+                                      <Link to={'/signin'}><p>Login for application</p></Link>
                                        )
                                    }                              
                                    

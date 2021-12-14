@@ -82,8 +82,7 @@ function App() {
 
   // EDIT BUTTON HANDLING-------------------------------
   const handleEdit = async (event, id) => {
-    console.log("clicked");
-    event.preventDefault();
+    event.preventDefault();    
     let editedMission = {
       name: event.target.name.value,
       image: event.target.image.value,
@@ -92,11 +91,7 @@ function App() {
       difficulty: event.target.difficulty.value,
     };
 
-    let response = await axios.patch(
-      `${HALO_URL}/missions/${id}`,
-      editedMission,
-      { withCredentials: true }
-    );
+    let response = await axios.patch(`${HALO_URL}/profile/mymissions/${id}`, editedMission, { withCredentials: true });
 
     let updatedMissions = missions.map((elem) => {
       if (elem._id == id) {
@@ -150,24 +145,30 @@ function App() {
   };
   //-------------------------------------------------------------
 
-  //-------------- CREATE BUTTON HANDLING-------------------------------
-  const handleCreate = async (event) => {
-    event.preventDefault();
-    let newMission = {
-      name: event.target.name.value,
-      description: event.target.description.value,
-      image: event.target.image.value,
-      duration: event.target.duration.value,
-      difficulty: event.target.difficulty.value,
-    };
+  // CREATE BUTTON HANDLING-------------------------------
+     const handleCreate = async (event) => {
+      event.preventDefault()
+      let newMission= {
+        name: event.target.name.value,
+        description: event.target.description.value,
+        image: event.target.image.value,
+        duration: event.target.duration.value,
+        difficulty: event.target.difficulty.value,
+      }
+     
+      let response = await axios.post(`${HALO_URL}/profile/mymissions/create`, newMission, {withCredentials: true})
+      setMissionsCopy([response.data, ...missionsCopy])
+     }    
 
-    let response = await axios.post(
-      `${HALO_URL}/profile/mymissions/create`,
-      newMission,
-      { withCredentials: true }
-    );
-    console.log([response.data, ...missionsCopy]);
-  };
+     const handleDelete = async (id) => {
+      await axios.delete(`${HALO_URL}/profile/mymissions/${id}`, {withCredentials: true})
+      
+      let filteredMissions = applyMission.filter((elem) => {
+        return elem._id !== id
+      })
+  
+      setApplyMission(filteredMissions)
+     }
 
   //-----LOG OUT FUNCTION------------------------------------------------------
   const handleLogout = async () => {
@@ -201,25 +202,17 @@ function App() {
         />
         <Route path="/apod" element={<Apod />} />
         <Route path="/apod/img" element={<ApodImg />} />
-
-        <Route
-          path="/missions"
-          element={<Missions applyClick={applyClick} editButton={handleEdit} />}
-        />
-        <Route path="/missions/:missionId" element={<MissionsDetails />} />
-        <Route
-          path="/missions/:missionId/edit"
-          element={<EditMission editButton={handleEdit} />}
-        />
-        <Route path="/about" element={<AboutPage />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route
-          path="/profile/mymissions/create"
-          element={<CreateMissions createButton={handleCreate} />}
-        />
-        <Route path="/profile/mymissions" element={<MyMissions />} />
-        <Route path="/apod" element={<Apod />} />
-        <Route path="/apod/img" element={<ApodImg />} />
+        
+        <Route  path="/missions" element={<Missions applyClick={applyClick} editButton={handleEdit}/>}/>
+        <Route  path="/missions/:missionId" element={ <MissionsDetails  /> }/>
+        <Route  path="/missions/:missionId/edit" element={ <EditMission editButton={handleEdit}/> }/>
+        <Route  path="/about" element={<AboutPage />}/>
+        <Route  path="/profile" element={<Profile />}/>
+        <Route  path="/profile/mymissions/create" element={<CreateMissions createButton={handleCreate}/>}/>
+        <Route  path="/profile/mymissions/" element={<MyMissions deleteButton={handleDelete}/>}/>
+        <Route  path="/profile/mymissions/:id" element={<MyMissions deleteButton={handleDelete}/>}/>
+        <Route  path="/apod" element={<Apod />}/>
+        <Route  path="/apod/img" element={<ApodImg />}/>
       </Routes>
     </div>
   );

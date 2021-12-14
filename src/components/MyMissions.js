@@ -4,7 +4,7 @@ import axios from 'axios'
 import {useParams, Link, Navigate} from 'react-router-dom'
 import {Spinner, Card, ListGroup, ListGroupItem, Button} from 'react-bootstrap';
 
-function MyMissions() {
+function MyMissions(props) {
     const [applyMission, setApplyMission] = useState([]);
     const [createdMission, setCreatedMission] = useState([]);
 
@@ -33,16 +33,8 @@ function MyMissions() {
     },[])
       
 
-    const handleDelete = async (id) => {
-        await axios.delete(`${HALO_URL}/profile/mymissions/${id}`, {withCredentials: true})
-        
-        let filteredMissions = applyMission.filter((elem) => {
-          return elem._id !== id
-        })
-    
-        setApplyMission(filteredMissions)
-       }
-
+   
+       const {deleteButton} = props
 
     return (
         <div>
@@ -66,7 +58,7 @@ function MyMissions() {
                       <Link to={`/missions/${elem._id}/edit`}>
                     <Button variant="outline-success">Edit mission</Button>{' '}
                     </Link>     
-                    <Button onClick={() => { handleDelete(elem.id)  }  } type="submit" variant="outline-success">Delete Mission</Button>{' '}                
+                    <Button onClick={ deleteButton } type="submit" variant="outline-success">Delete Mission</Button>{' '}                
                     </Card>
                   )
                 })                  

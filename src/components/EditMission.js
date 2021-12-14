@@ -53,9 +53,10 @@ function EditMission(props) {
                 <Form.Label>Mission's difficulty:</Form.Label>
                     <DifficultyLevel />                
             </Form.Group>
+            <Button type="submit" variant="outline-success">Save changes</Button>{' '}
             </Form>                      
 
-            <Button type="submit" variant="outline-success">Save changes</Button>{' '}
+            
         </div>
     )
 }

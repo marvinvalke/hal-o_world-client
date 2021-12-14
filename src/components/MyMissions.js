@@ -6,6 +6,7 @@ import {Spinner, Card, ListGroup, ListGroupItem, Button} from 'react-bootstrap';
 
 function MyMissions() {
     const [applyMission, setApplyMission] = useState([]);
+    const [createdMission, setCreatedMission] = useState([]);
 
     useEffect(()=>{
         async function getData(){
@@ -18,19 +19,34 @@ function MyMissions() {
         getData()
   
     },[])
+
+    useEffect(()=>{
+        async function getData(){
+            
+            let response = await axios.post(`${HALO_URL}/profile/mymissions/create`,{withCredentials: true})
+            setCreatedMission(response.data.MissionsCreated)
+            console.log(response.data.MissionsCreated)
+        }
+  
+        getData()
+  
+    },[])
       
 
-    const handleDelete = async (event, id) => {
+    const handleDelete = async (id) => {
         await axios.delete(`${HALO_URL}/profile/mymissions/${id}`, {withCredentials: true})
         
         let filteredMissions = applyMission.filter((elem) => {
           return elem._id !== id
         })
     
-        console.log(filteredMissions)
+        setApplyMission(filteredMissions)
        }
+
+
     return (
         <div>
+            <h3>Missions you've applied for:</h3>
             {
                 applyMission.map((elem) => {
                   return (
@@ -53,10 +69,9 @@ function MyMissions() {
                     <Button onClick={() => { handleDelete(elem.id)  }  } type="submit" variant="outline-success">Delete Mission</Button>{' '}                
                     </Card>
                   )
-                })   
-                
+                })                  
               }
-              
+              <h3>Missions you've created:</h3>   
               
         </div>
     )

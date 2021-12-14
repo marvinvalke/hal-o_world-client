@@ -21,17 +21,16 @@ function MyMissions(props) {
     },[])
 
     useEffect(()=>{
-        async function getData(){
-            
-            let response = await axios.post(`${HALO_URL}/profile/mymissions/create`,{withCredentials: true})
-            setCreatedMission(response.data.MissionsCreated)
-            console.log(response.data.MissionsCreated)
-        }
-  
-        getData()
-  
-    },[])
-      
+      async function getData(){
+          
+          let response = await axios.get(`${HALO_URL}/profile/mymissions`,{withCredentials: true})
+          setCreatedMission(response.data.createdMission)
+          console.log(response.data)
+      }
+
+      getData()
+
+  },[])
 
    
        const {deleteButton} = props
@@ -58,13 +57,36 @@ function MyMissions(props) {
                       <Link to={`/missions/${elem._id}/edit`}>
                     <Button variant="outline-success">Edit mission</Button>{' '}
                     </Link>     
-                    <Button onClick={ deleteButton } type="submit" variant="outline-success">Delete Mission</Button>{' '}                
+                    <Button onClick={() => {deleteButton(elem._id)}  } type="submit" variant="outline-success">Delete Mission</Button>{' '}                
                     </Card>
                   )
                 })                  
               }
               <h3>Missions you've created:</h3>   
-              
+              {/* {
+                createdMission.map((elem) => {
+                  return (
+                    <Card style={{ width: '18rem' }}>
+                      <Card.Img variant="top" src={elem.image} />
+                      <Card.Body>
+                        <Card.Title>{elem.name}</Card.Title>
+                        <Card.Text>
+                          {elem.description}
+                        </Card.Text>
+                      </Card.Body>
+                      <ListGroup className="list-group-flush">
+                        <ListGroupItem> {elem.duration}</ListGroupItem>
+                        <ListGroupItem> {elem.difficulty}</ListGroupItem>
+                        <ListGroupItem>Reviews</ListGroupItem>
+                      </ListGroup>   
+                      <Link to={`/missions/${elem._id}/edit`}>
+                    <Button variant="outline-success">Edit mission</Button>{' '}
+                    </Link>     
+                    <Button onClick={() => {deleteButton(elem._id)}  } type="submit" variant="outline-success">Delete Mission</Button>{' '}                
+                    </Card>
+                  )
+                })                  
+              } */}
         </div>
     )
 }

@@ -7,7 +7,6 @@ import { UserContext } from "../context/app.context";
 
 function MissionsDetails() {
 
-    const {user} = useContext(UserContext) 
     const {missionId} = useParams();
     const [missionsDetail, setMissionsDetail] = useState(missionId);
     // console.log(missionsDetail)
@@ -17,7 +16,7 @@ function MissionsDetails() {
         const fetchData = async () => {
             
            let response = await axios.get(`${HALO_URL}/missions/${missionId}`, {withCredentials: true})
-           setMissionsDetail(response.data)
+           console.log(response.data)
         }
         fetchData()
     }, [])

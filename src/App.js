@@ -184,22 +184,14 @@ function App() {
         />
         <Route path="/" element={<LandingPage />} />
         <Route path="/about" element={<AboutPage />} />
-        <Route
-          path="/profile"
-          element={<Profile />}
-        />
-        
+             
         <Route
           path="/profile/:id/edit"
           element={<ProfileEdit btnEdit={handleEditUser} />}
-        />
-        <Route path="/apod" element={<Apod />} />
-        <Route path="/apod/img" element={<ApodImg />} />
-        
-        <Route  path="/missions" element={<Missions applyClick={applyClick} editButton={handleEdit}/>}/>
+        />           
+        <Route  path="/missions" element={<Missions applyClick={applyClick} />}/>
         <Route  path="/missions/:id" element={ <MissionsDetails  /> }/>
-        <Route  path="/missions/:id/edit" element={ <EditMission editButton={handleEdit}/> }/>
-        <Route  path="/about" element={<AboutPage />}/>
+        <Route  path="/missions/:id/edit" element={ <EditMission editButton={handleEdit}/> }/>        
         <Route  path="/profile" element={<Profile />}/>
         <Route  path="/profile/mymissions/create" element={<CreateMissions createButton={handleCreate}/>}/>
         <Route  path="/profile/mymissions" element={<MyMissions />}/>

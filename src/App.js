@@ -183,8 +183,8 @@ function App() {
         <Route path="/apod/img" element={<ApodImg />} />
         
         <Route  path="/missions" element={<Missions applyClick={applyClick} editButton={handleEdit}/>}/>
-        <Route  path="/missions/:id" element={ <MissionsDetails  /> }/>
-        <Route  path="/missions/:id/edit" element={ <EditMission editButton={handleEdit}/> }/>
+        <Route  path="/missions/:missionId" element={ <MissionsDetails  /> }/>
+        <Route  path="/missions/:missionId/edit" element={ <EditMission editButton={handleEdit}/> }/>
         <Route  path="/about" element={<AboutPage />}/>
         <Route  path="/profile" element={<Profile />}/>
         <Route  path="/profile/create" />

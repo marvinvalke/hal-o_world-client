@@ -57,11 +57,13 @@ function ProfileEdit(props) {
           type="text"
           placeholder="Enter your email"
         />
-        <input defaultValue="Enter your password" name="password" type="text" placeholder="Enter your password" />
-        <form method="POST" action="/upload" enctype="multipart/form-data">
-          <input type="file" name="imageUrl" accept="image/png, image/jpg" />
-          <button type="submit">Submit</button>
-        </form>
+        <input
+          defaultValue="Enter your password"
+          name="password"
+          type="text"
+          placeholder="Enter your password"
+        />
+        <input type="file" name="myImage" accept="image/png, image/jpg" />
         <button type="submit">Edit</button>
       </form>
     </div>

@@ -22,9 +22,10 @@ function MyNav(props) {
       <Link to="/about" className="nav-link" color="inherit">
         About us
       </Link>
+     
       {user ? (
         <>
-          <Link className="nav-link" to="/apod">SEE APOD</Link>
+          
           <Link className="nav-link" to="/profile">My Profile</Link>
           <button onClick={props.onLogout}>Logout</button>
         </>

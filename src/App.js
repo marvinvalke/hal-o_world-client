@@ -17,6 +17,7 @@ import MyNav from "./components/MyNav";
 import MyMissions from "./components/MyMissions";
 import CreateMissions from "./components/CreateMissions";
 import SolarSystem from "./components/SolarSystem";
+import NotFound from "./components/NotFound";
 
 function App() {
   // STATES HOOKS AND CONTEXT----------------------------
@@ -214,9 +215,11 @@ function App() {
   console.log(createdMission);
   return (
     <div className="App">
+
       <StarrySky />
       <MyNav onLogout={handleLogout} />
       <Routes>
+        
         <Route
           path="/signin"
           element={
@@ -263,6 +266,7 @@ function App() {
         />
         <Route path="/apod" element={<Apod />} />
         <Route path="/solar-system" element={<SolarSystem />} />
+        <Route path="*" element={<NotFound />}/>        
       </Routes>
     </div>
   );

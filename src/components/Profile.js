@@ -9,8 +9,7 @@ import {
   ListGroupItem,
   Button,
 } from "react-bootstrap";
-import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
+
 import "./Profile.css";
 
 function Profile(props) {
@@ -45,7 +44,7 @@ function Profile(props) {
         <div class="card p-4">
           <div class=" image d-flex flex-column justify-content-center align-items-center">
             {" "}
-            <button class="btn btn-secondary">
+            <button class="btn btn-secondary avatar">
               {" "}
               <img
                 src={user.profilePic}

@@ -181,7 +181,6 @@ function App() {
     <div className="App">
       <StarrySky />
       <MyNav onLogout={handleLogout} />
-      <LandingPage />
       <Routes>
         <Route
           path="/signin"

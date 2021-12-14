@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import "./SolarSystem.css"
 import $ from "jquery";
 
@@ -9,11 +9,9 @@ import $ from "jquery";
 
 function SolarSystem() {
 
-
-    $(window).load(function(){
-
+    useEffect(() => {
         var body = $("body"),
-            universe = $("#universe"),
+            universe = $("#universe"), 
             solarsys = $("#solar-system");
       
         var init = function() {
@@ -50,9 +48,7 @@ function SolarSystem() {
         $(".set-distance").click(function() { setView("scale-d set-distance"); });
       
         init();
-      
-      });
-
+    }, [])
 
 
     return (
@@ -192,14 +188,8 @@ function SolarSystem() {
         </div>
       </div>
     </div>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
-    <script type="text/javascript">
-    if (typeof jQuery == 'undefined') { 
-      document.write(unescape("%3Cscript src='js/jquery.min.js' type='text/javascript'%3E%3C/script%3E"))
-    }
-    </script>
-    <script src="js/prefixfree.min.js"></script>
-    <script src="js/scripts.min.js"></script>
+   
+
   </body>
         </div>
     )

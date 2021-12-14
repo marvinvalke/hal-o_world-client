@@ -7,7 +7,7 @@ import SolarSystem from "./SolarSystem";
 function LandingPage() {
   return (
     <div>
-     
+      <SolarSystem />
       <Chatbot />
     </div>
   );

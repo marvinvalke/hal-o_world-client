@@ -25,7 +25,6 @@ function ProfileEdit(props) {
       });
       setUser(response.data);
     }
-    
 
     getData();
   }, []);
@@ -38,7 +37,6 @@ function ProfileEdit(props) {
     );
   }
 
-  
   return (
     <div>
       <h3>Edit Profile</h3>
@@ -59,12 +57,11 @@ function ProfileEdit(props) {
           type="text"
           placeholder="Enter your email"
         />
-        <input
-          defaultValue={user.password}
-          name="password"
-          type="text"
-          placeholder="Enter your password"
-        />
+        <input defaultValue="Enter your password" name="password" type="text" placeholder="Enter your password" />
+        <form method="POST" action="/upload" enctype="multipart/form-data">
+          <input type="file" name="imageUrl" accept="image/png, image/jpg" />
+          <button type="submit">Submit</button>
+        </form>
         <button type="submit">Edit</button>
       </form>
     </div>

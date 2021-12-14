@@ -3,8 +3,11 @@ import { Link } from "react-router-dom";
 import React from "react";
 import { useContext } from "react";
 import { UserContext } from "../context/app.context";
+import { HALO_URL } from "../config";
+import axios from "axios";
 
 // someting ? (<p></p>) : (<p></p>)
+
 function MyNav(props) {
   const { user } = useContext(UserContext);
 
@@ -21,8 +24,9 @@ function MyNav(props) {
       </Link>
       {user ? (
         <>
-          <Link to="/apod">SEE APOD</Link>
-          {/*                         <Link to="/logout" className='nav-link' color="inherit">Logout</Link>  */}
+          <Link className="nav-link" to="/apod">SEE APOD</Link>
+          <Link className="nav-link" to="/profile">My Profile</Link>
+          <button onClick={props.onLogout}>Logout</button>
         </>
       ) : (
         <>

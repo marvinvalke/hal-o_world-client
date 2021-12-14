@@ -49,10 +49,7 @@ function MissionsDetails() {
                 <ListGroupItem>Difficulty: {missionsDetail.difficulty}</ListGroupItem>  
                 <ListGroupItem>Rating: add reviews rating</ListGroupItem>                                               
             </ListGroup>
-            <Card.Body>
-                <Link to={`/missions/${missionsDetail._id}/edit`}>
-                    <Button variant="outline-success">Edit mission</Button>{' '}
-                </Link>
+            <Card.Body>               
                 <Link to={'/profile'}>
                     <Button variant="outline-success">Apply</Button>{' '}
                 </Link>

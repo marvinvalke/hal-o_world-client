@@ -94,7 +94,7 @@ function App() {
       difficulty: event.target.difficulty.value,
     };
 
-    let response = await axios.patch(`${HALO_URL}/missions/${id}`, editedMission, { withCredentials: true });
+    let response = await axios.patch(`${HALO_URL}/profile/mymissions/${id}`, editedMission, { withCredentials: true });
 
     let updatedMissions = missions.map((elem) => {
       if (elem._id == id) {
@@ -165,6 +165,15 @@ function App() {
       console.log([response.data, ...missionsCopy])
      }    
 
+     const handleDelete = async (id) => {
+      await axios.delete(`${HALO_URL}/profile/mymissions/${id}`, {withCredentials: true})
+      
+      let filteredMissions = applyMission.filter((elem) => {
+        return elem._id !== id
+      })
+  
+      setApplyMission(filteredMissions)
+     }
 
   return (
     <div className="App">
@@ -198,7 +207,8 @@ function App() {
         <Route  path="/about" element={<AboutPage />}/>
         <Route  path="/profile" element={<Profile />}/>
         <Route  path="/profile/mymissions/create" element={<CreateMissions createButton={handleCreate}/>}/>
-        <Route  path="/profile/mymissions" element={<MyMissions />}/>
+        <Route  path="/profile/mymissions/" element={<MyMissions deleteButton={handleDelete}/>}/>
+        <Route  path="/profile/mymissions/:id" element={<MyMissions deleteButton={handleDelete}/>}/>
         <Route  path="/apod" element={<Apod />}/>
         <Route  path="/apod/img" element={<ApodImg />}/>
       </Routes>

@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {useParams} from 'react-router-dom';
+import {useParams, Link} from 'react-router-dom';
 import { HALO_URL } from "../config";
 import axios from "axios";
 import {Spinner, Form, Button} from 'react-bootstrap';
@@ -43,7 +43,7 @@ function EditMission(props) {
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                 <Form.Label>Mission's image:</Form.Label>
-                <Form.Control name="image" placeholder={missionsDetail.image} />
+                <Form.Control type="file"  name="myImage"  accept="image/png, image/jpg" />
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                 <Form.Label>Mission's duration:</Form.Label>
@@ -53,7 +53,9 @@ function EditMission(props) {
                 <Form.Label>Mission's difficulty:</Form.Label>
                     <DifficultyLevel />                
             </Form.Group>
+            {/* <Link to={'/profile/mymissions'} > */}
             <Button type="submit" variant="outline-success">Save changes</Button>{' '}
+            {/* </Link> */}
             </Form>                      
 
             

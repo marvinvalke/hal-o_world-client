@@ -82,10 +82,16 @@ function App() {
 
   // EDIT BUTTON HANDLING-------------------------------
   const handleEdit = async (event, id) => {
-    event.preventDefault();    
+    event.preventDefault();  
+     // console.log(event.target.myImage.files[0])
+     let formData = new FormData()
+     formData.append('imageUrl', event.target.myImage.files[0])
+     //uploading the image to cloudinary first
+     let imgResponse = await axios.post(`${HALO_URL}/upload`, formData)
+    
     let editedMission = {
       name: event.target.name.value,
-      image: event.target.image.value,
+      image: imgResponse.data.image,
       description: event.target.description.value,
       duration: event.target.duration.value,
       difficulty: event.target.difficulty.value,
@@ -93,7 +99,7 @@ function App() {
 
     let response = await axios.patch(`${HALO_URL}/profile/mymissions/${id}`, editedMission, { withCredentials: true });
 
-    let updatedMissions = missions.map((elem) => {
+    let updatedMissions = missionsCopy.map((elem) => {
       if (elem._id == id) {
         elem.name = response.data.name;
         elem.image = response.data.image;
@@ -105,6 +111,7 @@ function App() {
     });
 
     setMissions(updatedMissions);
+    navigate("/profile/mymissions")
   };
 
   //-------------------------------------------------------------
@@ -113,6 +120,8 @@ function App() {
 
   const handleEditUser = async (event, id) => {
     event.preventDefault();
+
+    
     let editedUser = {
       username: event.target.username.value,
       email: event.target.email.value,
@@ -148,27 +157,38 @@ function App() {
   // CREATE BUTTON HANDLING-------------------------------
      const handleCreate = async (event) => {
       event.preventDefault()
+
+      // console.log(event.target.myImage.files[0])
+      let formData = new FormData()
+      formData.append('imageUrl', event.target.myImage.files[0])
+      //uploading the image to cloudinary first
+      let imgResponse = await axios.post(`${HALO_URL}/upload`, formData)
+
+      console.log(event.target.duration.value)
       let newMission= {
         name: event.target.name.value,
         description: event.target.description.value,
-        image: event.target.image.value,
+        image: imgResponse.data.image,
         duration: event.target.duration.value,
         difficulty: event.target.difficulty.value,
       }
-     
+     console.log(newMission)
       let response = await axios.post(`${HALO_URL}/profile/mymissions/create`, newMission, {withCredentials: true})
-      setMissionsCopy([response.data, ...missionsCopy])
-     }    
+      setApplyMission([response.data, ...applyMission])
+      navigate("/profile/mymissions")
+     }  
+  //-------------------------------------------------------------
 
-     const handleDelete = async (id) => {
-      await axios.delete(`${HALO_URL}/profile/mymissions/${id}`, {withCredentials: true})
-      
-      let filteredMissions = applyMission.filter((elem) => {
-        return elem._id !== id
-      })
-  
-      setApplyMission(filteredMissions)
-     }
+  //-----DELETE MISSION FROM PROFILE------------------------------------------------------
+    const handleDelete = async (id) => {
+    await axios.delete(`${HALO_URL}/profile/mymissions/${id}`, {withCredentials: true})
+    
+    let filteredMissions = applyMission.filter((elem) => {
+      return elem._id !== id
+    })
+
+    setApplyMission(filteredMissions)
+    }
 
   //-----LOG OUT FUNCTION------------------------------------------------------
   const handleLogout = async () => {
@@ -207,9 +227,9 @@ function App() {
         <Route  path="/missions/:missionId/edit" element={ <EditMission editButton={handleEdit}/> }/>
         <Route  path="/about" element={<AboutPage />}/>
         <Route  path="/profile" element={<Profile />}/>
-        <Route  path="/profile/mymissions/create" element={<CreateMissions createButton={handleCreate}/>}/>
         <Route  path="/profile/mymissions/" element={<MyMissions deleteButton={handleDelete}/>}/>
-        <Route  path="/profile/mymissions/:id" element={<MyMissions deleteButton={handleDelete}/>}/>
+        {/* <Route  path="/profile/mymissions/:id" element={<MyMissions />}/> */}
+        <Route  path="/profile/mymissions/create" element={<CreateMissions createButton={handleCreate}/>}/>    
         <Route  path="/apod" element={<Apod />}/>
         <Route  path="/apod/img" element={<ApodImg />}/>
       </Routes>

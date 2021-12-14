@@ -9,7 +9,7 @@ function CreateMissions(props) {
 
     return (
         <div className="test">
-           <Form  onSubmit={createButton} >
+           <Form  onSubmit={(event) => { createButton(event)  }} >
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                 <Form.Label>Mission's name:</Form.Label>
                 <Form.Control name="name" type="text" placeholder="Insert mission's name" />
@@ -20,7 +20,7 @@ function CreateMissions(props) {
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                 <Form.Label>Mission's image:</Form.Label>
-                <Form.Control name="image" placeholder="Select mission's image" />
+                <Form.Control type="file"  name="myImage"  accept="image/png, image/jpg" />
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                 <Form.Label>Mission's duration:</Form.Label>
@@ -30,7 +30,7 @@ function CreateMissions(props) {
                 <Form.Label>Mission's difficulty:</Form.Label>
                     <DifficultyLevel />                
             </Form.Group>
-            <Button type="submit" variant="outline-success">Save changes</Button>{' '}
+            <Button type="submit" variant="outline-success">Save </Button>{' '}
         </Form>                 
             
         </div>

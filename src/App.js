@@ -84,7 +84,6 @@ function App() {
 
   // EDIT BUTTON HANDLING-------------------------------
   const handleEdit = async (event, id) => {
-    console.log('clicked')
     event.preventDefault();    
     let editedMission = {
       name: event.target.name.value,
@@ -162,7 +161,7 @@ function App() {
       }
      
       let response = await axios.post(`${HALO_URL}/profile/mymissions/create`, newMission, {withCredentials: true})
-      console.log([response.data, ...missionsCopy])
+      setMissionsCopy([response.data, ...missionsCopy])
      }    
 
      const handleDelete = async (id) => {

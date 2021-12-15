@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import React from "react";
 import { useContext } from "react";
 import { UserContext } from "../context/app.context";
-import {Navbar, Container, Nav, NavDropdown, Button} from "react-bootstrap";
+import {Navbar, Container, Nav, NavDropdown, Button, Image} from "react-bootstrap";
 
 // someting ? (<p></p>) : (<p></p>)
 
@@ -15,7 +15,9 @@ function MyNav(props) {
           <Navbar collapseOnSelect expand="lg" bg="grey" variant="dark">
             <Container>
             <Nav.Link >
-              <Link to="/" className="nav-link" color="inherit"> Hal-0 World </Link>            
+              <Link to="/" className="nav-link" color="inherit">
+                <Image src={"https://live.staticflickr.com/65535/51749135506_d5c1387a00_m.jpg"} />
+               </Link>            
             </Nav.Link>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
@@ -70,3 +72,4 @@ function MyNav(props) {
 }
 
 export default MyNav;
+{/*  src="https://live.staticflickr.com/65535/51749135506_d5c1387a00_m.jpg" width="240" height="70" alt="logo"></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script> */}

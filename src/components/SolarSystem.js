@@ -91,27 +91,7 @@ function SolarSystem() {
           <a class="neptune" title="neptune" href="#neptunespeed">
             Neptune
           </a>
-        </div>
-        {/* <div id="controls">
-          <label class="set-view">
-            <input type="checkbox" />
-          </label>
-          <label class="set-zoom">
-            <input type="checkbox" />
-          </label>
-          <label>
-            <input type="radio" class="set-speed" name="scale" checked />
-            <span>Speed</span>
-          </label>
-          <label>
-            <input type="radio" class="set-size" name="scale" />
-            <span>Size</span>
-          </label>
-          <label>
-            <input type="radio" class="set-distance" name="scale" />
-            <span>Distance</span>
-          </label>
-        </div> */}
+        </div>        
         <div id="universe" class="scale-stretched">
           <div id="galaxy">
             <div id="solar-system" class="earth">

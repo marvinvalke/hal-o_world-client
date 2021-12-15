@@ -21,7 +21,7 @@ function Missions(props) {
   const [missionsCopy, setMissionsCopy] = useState(missions); //new state with missions copy to be filtered by the search bar
   const [randomMission, setRandomMission] = useState([]);
   const navigate = useNavigate();
-  const [value, setValue] = React.useState(5);
+
 
   //------------------fetching info from the api -------------------------
   useEffect(() => {
@@ -29,8 +29,10 @@ function Missions(props) {
       let response = await axios.get(`${HALO_URL}/missions`, {
         withCredentials: true,
       });
-      setMissions(response.data);
+      console.log(response.data);
+      setMissions(response.data)
       setMissionsCopy(response.data);
+
     };
     fetchData();
   }, []);
@@ -43,7 +45,7 @@ function Missions(props) {
   //-------------------------------------------------
 
   //------------------loading content from api -------------------------
-  if (!missionsCopy.length) {
+  if (!missions.length ) {
     return (
       <Spinner animation="border" role="status">
         <span className="visually-hidden">Loading...</span>
@@ -124,7 +126,7 @@ console.log("Random Mission:" , randomMission)
                     <Card.Title>Mission: {elem.name}</Card.Title>
                   </Link>
                 )}
-                <Rating name="read-only" value={value} readOnly />     
+                <Rating name="read-only" value={elem.rate} readOnly />     
                 {user ? (
                   <Link to={`/profile/mymissions`}>
                     <Button

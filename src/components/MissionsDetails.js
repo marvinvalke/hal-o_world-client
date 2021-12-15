@@ -5,13 +5,14 @@ import axios from "axios";
 import {Spinner, Card, ListGroup, ListGroupItem, Button} from 'react-bootstrap';
 import { UserContext } from "../context/app.context";
 import Ratings from './Ratings';
+import Reviews from './Reviews';
 
 function MissionsDetails() {
 
     const {missionId} = useParams();
     const [missionsDetail, setMissionsDetail] = useState(missionId);
-    const [reviewsComment, setReviewsComment] = useState([]);
-    console.log(reviewsComment.comments)
+   
+    
 
     //-----------------------axios req to fetch info from the selected mission------------------
     useEffect(() => {
@@ -19,14 +20,14 @@ function MissionsDetails() {
             
            let response = await axios.get(`${HALO_URL}/missions/${missionId}`, {withCredentials: true})
            setMissionsDetail(response.data)
-            let response2 = await axios.get(`${HALO_URL}/profile/mymissions/${missionId}/review`, { withCredentials: true});
-            setReviewsComment(response2.data) 
+            // let response2 = await axios.get(`${HALO_URL}/profile/mymissions/${missionId}/review`, { withCredentials: true});
+            // setReviewsComment(response2.data) 
         }
         fetchData()
     }, [])
     //----------------------------------------------------------------------------------------
     //------------------loading content from api -------------------------
-    if( !missionsDetail || !reviewsComment) {
+    if( !missionsDetail ) {
         return <Spinner animation="border" role="status">
                 <span className="visually-hidden">Loading...</span>
             </Spinner>
@@ -52,9 +53,9 @@ function MissionsDetails() {
                 <ListGroupItem>Duration: {missionsDetail.duration} months</ListGroupItem>
                 <ListGroupItem>Difficulty: {missionsDetail.difficulty}</ListGroupItem>  
                 <ListGroupItem>Rating:              
-                    <Ratings  />
+                    <Reviews  />
                     {/* <Card.Text> {missionsDetail.reviews}</Card.Text> */}
-                    <Card.Text> {reviewsComment.comments}</Card.Text>
+                    {/* <Card.Text>{missionsDetail.reviews}</Card.Text> */}
                 </ListGroupItem>                                               
             </ListGroup>                
             <Card.Body>               

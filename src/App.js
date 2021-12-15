@@ -18,6 +18,7 @@ import MyMissions from "./components/MyMissions";
 import CreateMissions from "./components/CreateMissions";
 import SolarSystem from "./components/SolarSystem";
 import NotFound from "./components/NotFound";
+import Reviews from "./components/Reviews";
 
 function App() {
   // STATES HOOKS AND CONTEXT----------------------------
@@ -76,9 +77,9 @@ function App() {
   //-------------------------------------------------
 
   // CONDITIONAL RENDERING OF USER CHANGES------------
-  useEffect(() => {
-    navigate("/");
-  }, [user]);
+  // useEffect(() => {
+  //   navigate("/");
+  // }, [user]);
   //------------
 
   // EDIT BUTTON HANDLING-------------------------------
@@ -219,7 +220,7 @@ function App() {
       <StarrySky />
       <MyNav onLogout={handleLogout} />
       <Routes>
-        
+      <Route path="*" element={<NotFound />}/>    
         <Route
           path="/signin"
           element={
@@ -250,23 +251,12 @@ function App() {
         />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/profile" element={<Profile />} />
-        <Route
-          path="/profile/mymissions/"
-          element={
-            <MyMissions
-              missionCreated={createdMission}
-              deleteButton={handleDelete}
-            />
-          }
-        />
-        {/* <Route  path="/profile/mymissions/:id" element={<MyMissions />}/> */}
-        <Route
-          path="/profile/mymissions/create"
-          element={<CreateMissions createButton={handleCreate} />}
-        />
+        <Route path="/profile/mymissions/" element={<MyMissions missionCreated={createdMission} deleteButton={handleDelete}/>}/>
+        <Route path="/profile/mymissions/:missionId/review" element={<Reviews />}/>
+        <Route path="/profile/mymissions/create" element={<CreateMissions createButton={handleCreate} />}/>
         <Route path="/apod" element={<Apod />} />
         <Route path="/solar-system" element={<SolarSystem />} />
-        <Route path="*" element={<NotFound />}/>        
+             
       </Routes>
     </div>
   );

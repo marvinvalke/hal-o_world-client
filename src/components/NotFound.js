@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import LottieControl from './LottieControl';
 import axios from "axios";
+import { Spinner } from "react-bootstrap";
 
 function NotFound() {
 
@@ -18,6 +19,14 @@ function NotFound() {
         getData()
     }, [])
     //---------------then change div content in the return section down ------------------------//
+
+    if (!someJson) {
+        return (
+            <Spinner animation="border" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </Spinner>
+          );
+    }
 
     return (
         <div>

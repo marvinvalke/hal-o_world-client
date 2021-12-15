@@ -56,7 +56,7 @@ function MyMissions(props) {
             >
               Delete Mission
             </Button>{" "}
-            <Link to={`/missions/${elem._id}/review`}>
+            <Link to={`/profile/mymissions/${elem._id}/review`}>
               <Button variant="outline-success">Review mission</Button>{" "}
             </Link>
           </Card>

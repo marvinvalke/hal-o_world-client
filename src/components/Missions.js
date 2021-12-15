@@ -12,6 +12,8 @@ import SearchBar from "./SearchBar";
 import { HALO_URL } from "../config";
 import axios from "axios";
 import { UserContext } from "../context/app.context";
+import Rating from '@mui/material/Rating';
+
 
 function Missions(props) {
   const { user } = useContext(UserContext);
@@ -19,6 +21,7 @@ function Missions(props) {
   const [missionsCopy, setMissionsCopy] = useState(missions); //new state with missions copy to be filtered by the search bar
   const [randomMission, setRandomMission] = useState([]);
   const navigate = useNavigate();
+  const [value, setValue] = React.useState(5);
 
   //------------------fetching info from the api -------------------------
   useEffect(() => {
@@ -114,13 +117,14 @@ console.log("Random Mission:" , randomMission)
                   <Link to={`/missions/${elem._id}`}>
                     <Card.Title>Mission: {elem.name}</Card.Title>
                   </Link>
+                  
                 ) : (
                   <Link to={"/signin"}>
                     {" "}
                     <Card.Title>Mission: {elem.name}</Card.Title>
                   </Link>
                 )}
-
+                <Rating name="read-only" value={value} readOnly />     
                 {user ? (
                   <Link to={`/profile/mymissions`}>
                     <Button

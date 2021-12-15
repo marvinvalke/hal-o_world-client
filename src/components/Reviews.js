@@ -3,7 +3,8 @@ import {Form, Button, Spinner} from 'react-bootstrap';
 import axios from "axios";
 import { HALO_URL } from "../config";
 import {useParams} from 'react-router-dom';
-import Ratings from './Ratings';
+import Box from '@mui/material/Box';
+import Rating from '@mui/material/Rating';
 
 
 function Reviews() {
@@ -13,25 +14,31 @@ function Reviews() {
     // const [mission, setMission] = useState(null)
     const [missionsDetail, setMissionsDetail] = useState(missionId);
     // console.log(missionsDetail)
+    const [value, setValue] = React.useState(1);
 
+    const getValue = async () => {
+        let response = await axios.get(`${HALO_URL}/profile/mymissions/${missionId}/review`, { withCredentials: true});
+        console.log(response.data.rate)
+        setValue(response.data.rate)
+}
+
+    const fetchData = async () => {
+            
+    let response = await axios.get(`${HALO_URL}/missions/${missionId}`, {withCredentials: true})
+    setMissionsDetail(response.data)
+ }
 
     useEffect(() => {
-        const fetchData = async () => {
-            
-           let response = await axios.get(`${HALO_URL}/missions/${missionId}`, {withCredentials: true})
-           setMissionsDetail(response.data)
-        }
+     
         fetchData()
+        getValue()
     }, [])
-    //----------------------------------------------------------------------------------------
 
-   
-
-    const handleReview = async (event) => {
-        event.preventDefault();
+    //---------------------------------------------------------------------------------------
+    const handleReview = async (newValue) => {
+        // event.preventDefault();
         let newReview = {
-           rate: event.target.rate.value,
-           comments: event.target.comments.value,
+           rate: newValue,           
         }
 
         let response = await axios.post(`${HALO_URL}/profile/mymissions/${missionId}/review`, newReview, {
@@ -40,6 +47,8 @@ function Reviews() {
         
        setReview([response.data, ...review])
     }
+
+    console.log('JoMa')
 
     if( !missionsDetail) {
         return <Spinner animation="border" role="status">
@@ -52,13 +61,26 @@ function Reviews() {
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                 <h1>{missionsDetail.name}</h1>
             </Form.Group>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                <Form.Label>Comment:</Form.Label>
-                <Form.Control name="comments" as="textarea" placeholder="Insert a comment" rows={2} />
-            </Form.Group>            
+                      
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                 <Form.Label>Mission's rating:</Form.Label>
-                <Ratings />
+                        <Box
+                        sx={{
+                            '& > legend': { mt: 2 },
+                        }}
+                        >
+                        
+                        <Rating
+                            name="simple-controlled"
+                            value={value}
+                            onChange={(event, newValue) => {
+                            // event.preventDefault();    
+                            setValue(newValue);
+                            handleReview(newValue)
+                            }}
+                        />      
+                       
+                        </Box>
             </Form.Group>      
             
             <Button type="submit" variant="outline-success">Save Review</Button>{' '}            

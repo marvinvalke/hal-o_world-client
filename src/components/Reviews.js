@@ -2,13 +2,15 @@ import React, {useEffect, useState} from 'react'
 import {Form, Button, Spinner} from 'react-bootstrap';
 import axios from "axios";
 import { HALO_URL } from "../config";
-import {useParams} from 'react-router-dom';
+import {useParams, useNavigate} from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Rating from '@mui/material/Rating';
 
 
-function Reviews() {
 
+function Reviews() {
+    
+    const Navigate = useNavigate()
     const [review, setReview] = useState([])
     const {missionId} = useParams()
     // const [mission, setMission] = useState(null)
@@ -46,6 +48,7 @@ function Reviews() {
           });
         
        setReview([response.data, ...review])
+       Navigate("/profile/mymissions")
     }
 
     console.log('JoMa')

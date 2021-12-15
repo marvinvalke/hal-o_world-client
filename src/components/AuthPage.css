@@ -8,7 +8,7 @@
   width: 100%;
   height: 100vh;
   font-family: sans-serif;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(https://images-assets.nasa.gov/image/as11-44-6551/as11-44-6551~orig.jpg);
+/*   background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(https://images-assets.nasa.gov/image/as11-44-6551/as11-44-6551~orig.jpg); */
  /*  https://images-assets.nasa.gov/image/PIA04921/PIA04921~large.jpg */
   background-repeat: no-repeat;
   background-size: cover;

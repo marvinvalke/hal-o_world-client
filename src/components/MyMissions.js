@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import { HALO_URL } from "../config";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import {Card, ListGroup, ListGroupItem, Button} from "react-bootstrap";
+import { Card, ListGroup, ListGroupItem, Button } from "react-bootstrap";
+import Rating from "@mui/material/Rating";
 
 function MyMissions(props) {
   const [applyMission, setApplyMission] = useState([]);
@@ -21,17 +22,16 @@ function MyMissions(props) {
     getData();
   }, []);
 
-  
-  console.log("craetedMission", createdMission)
-  console.log("addedMission", applyMission)
-  
+  console.log("craetedMission", createdMission);
+  console.log("addedMission", applyMission);
+
   const { deleteButton } = props;
-  console.log(props.missionCreated)
+  console.log(props.missionCreated);
   return (
     <div>
       <h3>Missions you've applied for:</h3>
-      {
-        applyMission.map((elem) => {
+      {applyMission.map((elem) => {
+        console.log(elem.rate);
         return (
           <Card style={{ width: "18rem" }}>
             <Card.Img variant="top" src={elem.image} />
@@ -42,29 +42,18 @@ function MyMissions(props) {
             <ListGroup className="list-group-flush">
               <ListGroupItem> {elem.duration}</ListGroupItem>
               <ListGroupItem> {elem.difficulty}</ListGroupItem>
-              <ListGroupItem>Reviews</ListGroupItem>
             </ListGroup>
-            <Link to={`/missions/${elem._id}/edit`}>
-              <Button variant="outline-success">Edit mission</Button>{" "}
-            </Link>
-            <Button
-              onClick={() => {
-                deleteButton(elem._id);
-              }}
-              type="submit"
-              variant="outline-success"
-            >
-              Delete Mission
-            </Button>{" "}
+
             <Link to={`/profile/mymissions/${elem._id}/review`}>
               <Button variant="outline-success">Review mission</Button>{" "}
             </Link>
           </Card>
         );
-      })
-      }
-      {
-        !createdMission.length ? ("") : (<>
+      })}
+      {!createdMission.length ? (
+        ""
+      ) : (
+        <>
           <h3>Missions you've created:</h3>
           {createdMission.map((elem) => {
             return (
@@ -77,7 +66,6 @@ function MyMissions(props) {
                 <ListGroup className="list-group-flush">
                   <ListGroupItem> {elem.duration}</ListGroupItem>
                   <ListGroupItem> {elem.difficulty}</ListGroupItem>
-                  <ListGroupItem>Reviews</ListGroupItem>
                 </ListGroup>
                 <Link to={`/missions/${elem._id}/edit`}>
                   <Button variant="outline-success">Edit mission</Button>{" "}
@@ -93,10 +81,9 @@ function MyMissions(props) {
                 </Button>{" "}
               </Card>
             );
-      })}
-
-      </>)
-      }
+          })}
+        </>
+      )}
     </div>
   );
 }

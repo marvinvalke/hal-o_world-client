@@ -87,7 +87,7 @@ function Missions(props) {
         setMissionsCopy([randomMission, ...missionsCopy])
   };
   //---------------------------------------------------------------------------
-
+console.log("Random Mission:" , randomMission)
 
 
   const { applyClick } = props;

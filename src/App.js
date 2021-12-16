@@ -213,7 +213,8 @@ function App() {
     setUser(null);
   };
   //---------------------------------------------------------------------------
-  console.log(createdMission);
+  
+
   return (
     <div className="App">
 
@@ -255,8 +256,7 @@ function App() {
         <Route path="/profile/mymissions/:missionId/review" element={<Reviews />}/>
         <Route path="/profile/mymissions/create" element={<CreateMissions createButton={handleCreate} />}/>
         <Route path="/apod" element={<Apod />} />
-        <Route path="/solar-system" element={<SolarSystem />} />
-             
+        <Route path="/solar-system" element={<SolarSystem />} />             
       </Routes>
     </div>
   );

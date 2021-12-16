@@ -64,9 +64,7 @@ function Apod(props) {
   return (
     <div className="apodComponent">
       <div className="missionTitles">
-
-      <h1>Astronomical Picture Of the Day</h1>
-
+        <h1>Astronomical Picture Of the Day</h1>
       </div>
 
       {/*       width: 300,
@@ -74,84 +72,94 @@ function Apod(props) {
         '& .MuiSlider-thumb': {
           borderRadius: '1px',
         }, */}
-        <div className="apodCard">
+      <div className="apodCard">
+        {dateEntered ? (
+          <>
+            <Card style={{ width: "45rem", height: "40rem" }}>
+              <a href={bDayPic.url} target="_blank">
+                <CardMedia
+                  component="img"
+                  height="340"
+                  image={bDayPic.url}
+                  alt=""
+                />
+              </a>
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="div">
+                  {bDayPic.title}
+                </Typography>
+                <Typography
+                  className="apodTextCard"
+                  variant="body2"
+                  color="white"
+                >
+                  {bDayPic.date}
+                </Typography>
+                <Typography
+                  className="apodTextCard"
+                  variant="body2"
+                  color="white"
+                >
+                  {bDayPic.explanation}
+                </Typography>
+              </CardContent>
+            </Card>
+            <button className="applyBtn" type="submit" onClick={handleGoBack}>
+              Go Back
+            </button>
+          </>
+        ) : (
+          <>
+            <Card style={{ width: "45rem", height: "40rem" }}>
+              <a href={url} target="_blank">
+                <CardMedia component="img" height="340" image={url} alt="" />
+              </a>
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="div">
+                  {title}
+                </Typography>
+                <Typography variant="body2" color="white">
+                  {date}
+                </Typography>
+                <Typography variant="body2" color="white">
+                  {explanation}
+                </Typography>
+              </CardContent>
+            </Card>
 
-      {dateEntered ? (
-        <>
-        <Card style={{ width: "45rem", height:"40rem"}}>
-            <a href={bDayPic.url} target="_blank">
-              <CardMedia
-                component="img"
-                height="340"
-                image={bDayPic.url}
-                alt=""
-              />
-            </a>
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
-                {bDayPic.title}
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                {bDayPic.date}
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                {bDayPic.explanation}
-              </Typography>
-            </CardContent>
-          </Card>
-          <button className="applyBtn"  type="submit" onClick={handleGoBack}>
-            Go Back
-          </button>
-        </>
-      ) : (
-        <>
-        <Card style={{ width: "45rem", height:"40rem"}}>
-            <a href={url} target="_blank">
-              <CardMedia component="img" height="340" image={url} alt="" />
-            </a>
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
-                {title}
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                {date}
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                {explanation}
-              </Typography>
-            </CardContent>
-          </Card>
-
-          <div className="missionTitles">
-
-      <h1 className="apodH1" >Check The Astronomical Picture of your Birthday</h1>
-
-      </div>
-
-          <form  onSubmit={handleDate}>
-            <div className="apodBdayForm">
-            <input className="bDayInput"
-              name="day"
-              min="1"
-              max="31"
-              type="number"
-              placeholder="Enter your day"
-            />
-          
-            <input className="bDayInput"
-              name="month"
-              min="1"
-              max="12"
-              type="number"
-              placeholder="Enter your month"
-            />
+            <div className="missionTitles">
+              <h1 className="apodH1">
+                Check The Astronomical Picture of your Birthday
+              </h1>
             </div>
-            <button className="applyBtn"  type="submit">Submit</button>
-          </form>
-        </>
-      )}
 
-        </div>
+            <form onSubmit={handleDate}>
+              <div className="apodBdayForm">
+                <input
+                  className="bDayInput"
+                  name="day"
+                  min="1"
+                  max="31"
+                  type="number"
+                  placeholder="Enter your day"
+                />
+
+                <input
+                  className="bDayInput"
+                  name="month"
+                  min="1"
+                  max="12"
+                  type="number"
+                  placeholder="Enter your month"
+                />
+              </div>
+              <button className="applyBtn" type="submit">
+                Submit
+              </button>
+            </form>
+          </>
+        )}
+      </div>
     </div>
   );
 }

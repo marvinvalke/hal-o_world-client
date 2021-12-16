@@ -4,6 +4,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { Card, ListGroup, ListGroupItem, Button } from "react-bootstrap";
 import Rating from "@mui/material/Rating";
+import CardMedia from "@mui/material/CardMedia";
 
 function MyMissions(props) {
   const [applyMission, setApplyMission] = useState([]);
@@ -28,60 +29,94 @@ function MyMissions(props) {
   const { deleteButton } = props;
   console.log(props.missionCreated);
   return (
-    <div>
-      <h3>Missions you've applied for:</h3>
-      {applyMission.map((elem) => {
-        console.log(elem.rate);
-        return (
-          <Card style={{ width: "18rem" }}>
-            <Card.Img variant="top" src={elem.image} />
-            <Card.Body>
-              <Card.Title>{elem.name}</Card.Title>
-              <Card.Text>{elem.description}</Card.Text>
-            </Card.Body>
-            <ListGroup className="list-group-flush">
-              <ListGroupItem> {elem.duration}</ListGroupItem>
-              <ListGroupItem> {elem.difficulty}</ListGroupItem>
-            </ListGroup>
+    <div className="myMissionsContainer">
+      <div className="missionsApply">
+        <div className="missionTitles">
+          <h3>Missions you've applied for:</h3>
+        </div>
+        {applyMission.map((elem) => {
+          console.log(elem.rate);
+          return (
+            <Card style={{ width: "18rem", height:"400px", margin: "20px" }}>
+              <CardMedia
+                component="img"
+                height="140"
+                image={elem.image}
+                alt=""
+              />
+              <Card.Body>
+                <Card.Title>{elem.name}</Card.Title>
+                <Card.Text>
+                  Description: <br />
+                  {elem.description}
+                </Card.Text>
+                <hr />
+                <ListGroup className="list-group-flush">
+                  Duration: {elem.duration} Months
+                  <br />
+                  Difficulty: {elem.difficulty}
+                </ListGroup>
+              </Card.Body>
 
-            <Link to={`/profile/mymissions/${elem._id}/review`}>
-              <Button variant="outline-success">Review mission</Button>{" "}
-            </Link>
-          </Card>
-        );
-      })}
+              <Link to={`/profile/mymissions/${elem._id}/review`}>
+                <button id="editMission" className="applyBtn" variant="outline-success">
+                  Review mission
+                </button>{" "}
+              </Link>
+            </Card>
+          );
+        })}
+      </div>
       {!createdMission.length ? (
         ""
       ) : (
         <>
-          <h3>Missions you've created:</h3>
-          {createdMission.map((elem) => {
-            return (
-              <Card style={{ width: "18rem" }}>
-                <Card.Img variant="top" src={elem.image} />
-                <Card.Body>
-                  <Card.Title>{elem.name}</Card.Title>
-                  <Card.Text>{elem.description}</Card.Text>
-                </Card.Body>
-                <ListGroup className="list-group-flush">
-                  <ListGroupItem> {elem.duration}</ListGroupItem>
-                  <ListGroupItem> {elem.difficulty}</ListGroupItem>
-                </ListGroup>
-                <Link to={`/missions/${elem._id}/edit`}>
-                  <Button variant="outline-success">Edit mission</Button>{" "}
-                </Link>
-                <Button
-                  onClick={() => {
-                    deleteButton(elem._id);
-                  }}
-                  type="submit"
-                  variant="outline-success"
+          <div className="missionsApply">
+            <div className="missionTitles">
+              <h3>Missions you've created:</h3>
+            </div>
+            {createdMission.map((elem) => {
+              return (
+                <Card
+                  style={{ width: "18rem", height:"400px", margin: "20px" }}
                 >
-                  Delete Mission
-                </Button>{" "}
-              </Card>
-            );
-          })}
+                  <CardMedia
+                    component="img"
+                    height="140"
+                    image={elem.image}
+                    alt=""
+                  />
+                  <Card.Body>
+                    <Card.Title>{elem.name}</Card.Title>
+                    <Card.Text>
+                      Description: <br /> {elem.description}
+                    </Card.Text>
+                    <hr />
+                    <ListGroup className="list-group-flush">
+                      Duration: {elem.duration} Months
+                      <br />
+                      Difficulty: {elem.difficulty}
+                    </ListGroup>
+                  </Card.Body>
+                  <Link to={`/missions/${elem._id}/edit`}>
+                    <button id="editMission" className="applyBtn" variant="outline-success">
+                      Edit mission{" "}
+                    </button>
+                  </Link>
+                  <button id="editMission"
+                    className="applyBtn"
+                    onClick={() => {
+                      deleteButton(elem._id);
+                    }}
+                    type="submit"
+                    variant="outline-success"
+                  >
+                    Delete Mission
+                  </button>{" "}
+                </Card>
+              );
+            })}
+          </div>
         </>
       )}
     </div>

@@ -12,25 +12,25 @@ function CreateMissions(props) {
            <Form  onSubmit={(event) => { createButton(event)  }} >
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                 <Form.Label>Mission's name:</Form.Label>
-                <Form.Control name="name" type="text" placeholder="Insert mission's name" />
+                <Form.Control className="mb-3" name="name" type="text" placeholder="Insert mission's name" />
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                 <Form.Label>Mission's description:</Form.Label>
-                <Form.Control name="description" as="textarea" placeholder="Insert mission's description" rows={2} />
+                <Form.Control className="mb-3" name="description" as="textarea" placeholder="Insert mission's description" rows={2} />
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                 <Form.Label>Mission's image:</Form.Label>
-                <Form.Control type="file"  name="myImage"  accept="image/png, image/jpg" />
+                <Form.Control className="mb-3" type="file"  name="myImage"  accept="image/png, image/jpg" />
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                 <Form.Label>Mission's duration:</Form.Label>
-                <Form.Control name="duration" type="text" placeholder="Insert mission's duration" />
+                <Form.Control className="mb-3" name="duration" type="text" placeholder="Insert mission's duration" />
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                 <Form.Label>Mission's difficulty:</Form.Label>
                     <DifficultyLevel />                
             </Form.Group>
-            <Button type="submit" variant="outline-success">Save </Button>{' '}
+            <button class="avatar2" type="submit" variant="outline-success">Save </button>{' '}
         </Form>                 
             
         </div>

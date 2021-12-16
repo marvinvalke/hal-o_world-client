@@ -4,9 +4,24 @@
     /* cursor: pointer; */
     transition: all 0.5s;
 	border-radius: 8%;
+	}
+
+	.cardProfileEdit{
+		width: 400px;   
+		background-color: #b8b8b86e;
+		/* cursor: pointer; */
+		transition: all 0.5s;
+		border-radius: 8%;
+		height: 600px;
+	}
+
+	.profilePicEdit{
+		margin-top: 20px;
+	}
+
+.profilePictureLabel{
+	color: rgb(223, 219, 4)
 }
-
-
 
 .btn {
     height: 140px;
@@ -81,4 +96,8 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+}
+
+.input-group-prepend {
+	margin-top: 10px
 }

@@ -33,9 +33,9 @@ function App() {
   const [createdMission, setCreatedMission] = useState([]);
   //-----------------------------------------------
 
-useEffect(() => {
-  fetchUser()
-}, [])
+  useEffect(() => {
+    fetchUser();
+  }, []);
 
   const fetchUser = async () => {
     let response = await axios.get(`${HALO_URL}/profile`, {
@@ -224,6 +224,7 @@ useEffect(() => {
     <div className="App">
       <StarrySky />
       <MyNav onLogout={handleLogout} />
+      <div className="testDiv">
       <Routes>
         <Route path="*" element={<NotFound />} />
         <Route
@@ -249,7 +250,10 @@ useEffect(() => {
           path="/missions"
           element={<Missions applyClick={applyClick} editButton={handleEdit} />}
         />
-        <Route path="/missions/:missionId" element={<MissionsDetails applyClick={applyClick}/>} />
+        <Route
+          path="/missions/:missionId"
+          element={<MissionsDetails applyClick={applyClick} />}
+        />
         <Route
           path="/missions/:missionId/edit"
           element={<EditMission editButton={handleEdit} />}
@@ -276,6 +280,9 @@ useEffect(() => {
         <Route path="/apod" element={<Apod />} />
         <Route path="/solar-system" element={<SolarSystem />} />
       </Routes>
+
+
+      </div>
     </div>
   );
 }

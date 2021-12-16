@@ -18,13 +18,10 @@ function MissionsDetails(props) {
   //-----------------------axios req to fetch info from the selected mission------------------
   useEffect(() => {
     const fetchData = async () => {
-      let response = await axios.get(
-        `${HALO_URL}/missions/${missionId}`,
-        {
-          withCredentials: true,
-        }
-      );
-      console.log(response.data)
+      let response = await axios.get(`${HALO_URL}/missions/${missionId}`, {
+        withCredentials: true,
+      });
+      console.log(response.data);
       setMissionsDetail(response.data);
       // let response2 = await axios.get(`${HALO_URL}/profile/mymissions/${missionId}/review`, { withCredentials: true});
       // setReviewsComment(response2.data)
@@ -64,10 +61,6 @@ function MissionsDetails(props) {
             Duration: {missionsDetail.duration} months
             <br />
             Difficulty: {missionsDetail.difficulty}
-            <br />
-            Rating:
-            <Card.Text> {missionsDetail.reviews}</Card.Text>
-            {/* <Card.Text>{missionsDetail.reviews}</Card.Text> */}
           </ListGroup>
           <button
             className="applyBtn"

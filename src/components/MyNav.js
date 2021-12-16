@@ -17,8 +17,8 @@ function MyNav(props) {
   const { user } = useContext(UserContext);
 
   return (
-    <div>
-      <Navbar collapseOnSelect expand="lg" bg="grey" variant="dark">
+    <div className="navBar">
+      <Navbar collapseOnSelect expand="lg" variant="dark">
         <Container>
           <Nav.Link>
             <Link to="/" className="nav-link">

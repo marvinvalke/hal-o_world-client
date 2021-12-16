@@ -9,19 +9,22 @@ import {
   ListGroupItem,
   Button,
 } from "react-bootstrap";
-import { UserContext } from "../context/app.context";
-import Reviews from "./Reviews";
+import CardMedia from "@mui/material/CardMedia";
 
-function MissionsDetails() {
+function MissionsDetails(props) {
   const { missionId } = useParams();
   const [missionsDetail, setMissionsDetail] = useState(missionId);
 
   //-----------------------axios req to fetch info from the selected mission------------------
   useEffect(() => {
     const fetchData = async () => {
-      let response = await axios.get(`${HALO_URL}/missions/${missionId}`, {
-        withCredentials: true,
-      });
+      let response = await axios.get(
+        `${HALO_URL}/missions/${missionId}`,
+        {
+          withCredentials: true,
+        }
+      );
+      console.log(response.data)
       setMissionsDetail(response.data);
       // let response2 = await axios.get(`${HALO_URL}/profile/mymissions/${missionId}/review`, { withCredentials: true});
       // setReviewsComment(response2.data)
@@ -43,30 +46,38 @@ function MissionsDetails() {
   //     return <Navigate to="/signin" />
   // }
   //-----------------------------------------------------------------
-
+  const { applyClick } = props;
   return (
-    <div>
-      <Card style={{ width: "18rem" }}>
-        <Card.Img variant="top" src={missionsDetail.image} />
+    <div className="missionDetailsContainer">
+      <Card style={{ width: "28rem" }}>
+        <CardMedia
+          component="img"
+          height="140"
+          image={missionsDetail.image}
+          alt=""
+        />
         <Card.Body>
           <Card.Title>Mission: {missionsDetail.name}</Card.Title>
           <Card.Text> {missionsDetail.description}</Card.Text>
-        </Card.Body>
-        <ListGroup className="list-group-flush">
-          <ListGroupItem>
+          <hr />
+          <ListGroup className="list-group-flush">
             Duration: {missionsDetail.duration} months
-          </ListGroupItem>
-          <ListGroupItem>Difficulty: {missionsDetail.difficulty}</ListGroupItem>
-          <ListGroupItem>
+            <br />
+            Difficulty: {missionsDetail.difficulty}
+            <br />
             Rating:
-            {/* <Card.Text> {missionsDetail.reviews}</Card.Text> */}
+            <Card.Text> {missionsDetail.reviews}</Card.Text>
             {/* <Card.Text>{missionsDetail.reviews}</Card.Text> */}
-          </ListGroupItem>
-        </ListGroup>
-        <Card.Body>
-          <Link to={"/profile"}>
-            <Button variant="outline-success">Apply</Button>{" "}
-          </Link>
+          </ListGroup>
+          <button
+            className="applyBtn"
+            onClick={(event) => {
+              applyClick(event, missionsDetail._id);
+            }}
+            variant="outline-success"
+          >
+            Apply
+          </button>
         </Card.Body>
       </Card>
     </div>

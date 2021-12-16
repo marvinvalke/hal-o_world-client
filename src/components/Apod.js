@@ -1,8 +1,6 @@
 import axios from "axios";
 import React from "react";
 import { useState, useEffect } from "react";
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
@@ -10,6 +8,7 @@ import Typography from "@mui/material/Typography";
 import { Link } from "react-router-dom";
 // https://api.nasa.gov/planetary/apod?api_key=ClLBm5CAJZEUZvW0bmgTHSMLbsmq7jYuJE5Xkw6F
 import { HALO_URL } from "../config";
+import { Card } from "react-bootstrap";
 
 function Apod(props) {
   const [picture, setPicture] = useState(null);
@@ -65,16 +64,27 @@ function Apod(props) {
   console.log(picture);
   console.log(dateEntered);
   return (
-    <div>
-      <h1>APOD</h1>
+    <div className="apodComponent">
+      <div className="missionTitles">
+
+      <h1>Astronomical Picture Of the Day</h1>
+
+      </div>
+
+      {/*       width: 300,
+        color: 'success.main',
+        '& .MuiSlider-thumb': {
+          borderRadius: '1px',
+        }, */}
+        <div className="apodCard">
 
       {dateEntered ? (
         <>
-          <Card sx={{ maxWidth: 345 }}>
-            <a href={bDayPic.url}>
+        <Card style={{ width: "45rem", height:"40rem"}}>
+            <a href={bDayPic.url} target="_blank">
               <CardMedia
                 component="img"
-                height="140"
+                height="340"
                 image={bDayPic.url}
                 alt=""
               />
@@ -91,15 +101,15 @@ function Apod(props) {
               </Typography>
             </CardContent>
           </Card>
-          <Button onClick={handleGoBack} type="submit">
+          <button className="applyBtn"  type="submit" onClick={handleGoBack}>
             Go Back
-          </Button>
+          </button>
         </>
       ) : (
         <>
-          <Card sx={{ maxWidth: 345 }}>
-            <a href={url}>
-              <CardMedia component="img" height="140" image={url} alt="" />
+        <Card style={{ width: "45rem", height:"40rem"}}>
+            <a href={url} target="_blank">
+              <CardMedia component="img" height="340" image={url} alt="" />
             </a>
             <CardContent>
               <Typography gutterBottom variant="h5" component="div">
@@ -114,26 +124,36 @@ function Apod(props) {
             </CardContent>
           </Card>
 
-          <form onSubmit={handleDate}>
-            <input
+          <div className="missionTitles">
+
+      <h1 className="apodH1" >Check The Astronomical Picture of your Birthday</h1>
+
+      </div>
+
+          <form  onSubmit={handleDate}>
+            <div className="apodBdayForm">
+            <input className="bDayInput"
               name="day"
               min="1"
               max="31"
               type="number"
-              placeholder="Enter day"
+              placeholder="Enter your day"
             />
-            <input
+          
+            <input className="bDayInput"
               name="month"
               min="1"
               max="12"
               type="number"
-              placeholder="Enter month"
+              placeholder="Enter your month"
             />
-
-            <Button type="submit">Submit</Button>
+            </div>
+            <button className="applyBtn"  type="submit">Submit</button>
           </form>
         </>
       )}
+
+        </div>
     </div>
   );
 }

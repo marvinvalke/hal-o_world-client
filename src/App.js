@@ -19,8 +19,7 @@ import CreateMissions from "./components/CreateMissions";
 import SolarSystem from "./components/SolarSystem";
 import NotFound from "./components/NotFound";
 import Reviews from "./components/Reviews";
-import "./App.css"
-
+import "./App.css";
 
 function App() {
   // STATES HOOKS AND CONTEXT----------------------------
@@ -80,7 +79,7 @@ function App() {
 
   // CONDITIONAL RENDERING OF USER CHANGES------------
   useEffect(() => {
-  navigate("/");
+    navigate("/");
   }, [user]);
   //------------
 
@@ -163,6 +162,7 @@ function App() {
       { id },
       { withCredentials: true }
     );
+    navigate("/profile/mymissions");
   };
   //-------------------------------------------------------------
 
@@ -215,15 +215,13 @@ function App() {
     setUser(null);
   };
   //---------------------------------------------------------------------------
-  
 
   return (
     <div className="App">
-
       <StarrySky />
       <MyNav onLogout={handleLogout} />
       <Routes>
-      <Route path="*" element={<NotFound />}/>    
+        <Route path="*" element={<NotFound />} />
         <Route
           path="/signin"
           element={
@@ -247,18 +245,32 @@ function App() {
           path="/missions"
           element={<Missions applyClick={applyClick} editButton={handleEdit} />}
         />
-        <Route path="/missions/:missionId" element={<MissionsDetails />} />
+        <Route path="/missions/:missionId" element={<MissionsDetails applyClick={applyClick}/>} />
         <Route
           path="/missions/:missionId/edit"
           element={<EditMission editButton={handleEdit} />}
         />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/profile" element={<Profile />} />
-        <Route path="/profile/mymissions/" element={<MyMissions missionCreated={createdMission} deleteButton={handleDelete}/>}/>
-        <Route path="/profile/mymissions/:missionId/review" element={<Reviews />}/>
-        <Route path="/profile/mymissions/create" element={<CreateMissions createButton={handleCreate} />}/>
+        <Route
+          path="/profile/mymissions/"
+          element={
+            <MyMissions
+              missionCreated={createdMission}
+              deleteButton={handleDelete}
+            />
+          }
+        />
+        <Route
+          path="/profile/mymissions/:missionId/review"
+          element={<Reviews />}
+        />
+        <Route
+          path="/profile/mymissions/create"
+          element={<CreateMissions createButton={handleCreate} />}
+        />
         <Route path="/apod" element={<Apod />} />
-        <Route path="/solar-system" element={<SolarSystem />} />             
+        <Route path="/solar-system" element={<SolarSystem />} />
       </Routes>
     </div>
   );

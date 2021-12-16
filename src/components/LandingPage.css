@@ -1,15 +1,27 @@
 @import url('https://fonts.googleapis.com/css2?family=Arvo:wght@700&family=Bungee&display=swap');
 * {
-    margin: ;
+    margin: 0;
     padding: 0;
   }
+
+
 
 .landing-page-welcome {
  font-family: 'Bungee', cursive;
  color: rgb(245, 247, 221);
+ margin-bottom: 30px;
 }
 
+
 .hal-o-world {
-    color: rgb(240, 236, 15);
-    font-size: 35px;
+  color: rgb(240, 236, 15);
+  font-size: 3em;
+  margin-bottom: 30px;
+}
+
+
+@media only screen and (max-width: 450px) {
+  .hal-o-world  {
+    font-size: 1.4em;
+  }
 }

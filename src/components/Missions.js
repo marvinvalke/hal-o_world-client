@@ -12,16 +12,15 @@ import SearchBar from "./SearchBar";
 import { HALO_URL } from "../config";
 import axios from "axios";
 import { UserContext } from "../context/app.context";
-import Rating from '@mui/material/Rating';
-
+import Rating from "@mui/material/Rating";
+import CardMedia from "@mui/material/CardMedia";
 
 function Missions(props) {
   const { user } = useContext(UserContext);
   const [missions, setMissions] = useState([]); //to store missions info
   const [missionsCopy, setMissionsCopy] = useState(missions); //new state with missions copy to be filtered by the search bar
-  const [randomMission, setRandomMission] = useState([]);
+  const [randomMission, setRandomMission] = useState(null);
   const navigate = useNavigate();
-
 
   //------------------fetching info from the api -------------------------
   useEffect(() => {
@@ -30,22 +29,21 @@ function Missions(props) {
         withCredentials: true,
       });
       console.log(response.data);
-      setMissions(response.data)
+      setMissions(response.data);
       setMissionsCopy(response.data);
-
     };
     fetchData();
   }, []);
   //-----------------------------------------------------------------
 
   // conditional rendering for when user updates------------
-  //   useEffect(() => {
-  //     navigate('/')
-  // }, [missions])
+   useEffect(() => {
+    navigate('/')
+ }, [missions])
   //-------------------------------------------------
 
   //------------------loading content from api -------------------------
-  if (!missions.length ) {
+  if (!missions.length) {
     return (
       <Spinner animation="border" role="status">
         <span className="visually-hidden">Loading...</span>
@@ -82,23 +80,76 @@ function Missions(props) {
 
   //------------------handle getting a random mission------------------------
   const handleRandomMission = () => {
-    let randomMission = missionsCopy[Math.floor(Math.random() * missionsCopy.length)]
+    let randomMission =
+      missionsCopy[Math.floor(Math.random() * missionsCopy.length)];
 
-        setMissionsCopy([randomMission, ...missionsCopy])
+    setRandomMission(randomMission);
   };
-  //---------------------------------------------------------------------------
-console.log("Random Mission:" , randomMission)
 
+  console.log("Random Mission:", randomMission);
+
+  //---------------------------------------------------------------------------
 
   const { applyClick } = props;
   return (
-    <div>
+    <div className="missionsContainer">
+      <div className="missionTitles">
+        <h1>Check out the space missions that we have for you!</h1>
+        <h3>Pick your favorite one and proceed with your application.</h3>
+        <h4>Good luck astronaut!</h4>
+      </div>
       <SearchBar btnSearch={handleSearch} />
-      <h1>Check out the space missions that we have for you!</h1>
-      <h3>Pick your favorite one and proceed with your application.</h3>
-      <h4>Good luck astronaut!</h4>
-      <button onClick={handleNameOrder}>A-Z</button>
-      <button onClick={handleRandomMission}>Get a random Mission</button>
+      <div className="landingBtn">
+        <button class="avatar2" onClick={handleNameOrder}>
+          A-Z
+        </button>
+        <button class="avatar2" onClick={handleRandomMission}>
+          Get a random Mission
+        </button>
+      </div>
+      {randomMission ? (
+        <>
+          <div className="missionDetailsContainer">
+            <Card style={{ width: "18rem", height: "25rem" }}>
+              <CardMedia
+                component="img"
+                height="140"
+                image={randomMission.image}
+                alt=""
+              />
+              <Card.Body>
+                <Rating name="read-only" value={randomMission.rate} readOnly />
+                <Link to={`/missions/${missions._id}`}>
+                  <Card.Title>Mission: {randomMission.name}</Card.Title>
+                </Link>
+              </Card.Body>
+
+              {user ? (
+                <>
+                  <Link to={`/profile/mymissions`}>
+                    <button
+                      className="applyBtn"
+                      onClick={(event) => {
+                        applyClick(event, missions._id);
+                      }}
+                    >
+                      Apply for this!
+                    </button>
+                  </Link>
+                </>
+              ) : (
+                <>
+                  <Link to={"/signin"}>
+                    <p>Login for application</p>
+                  </Link>
+                </>
+              )}
+            </Card>
+          </div>
+        </>
+      ) : (
+        <p>No Random</p>
+      )}
       {/*  {
            randomMission.map((e)=>{
                return (
@@ -106,46 +157,62 @@ console.log("Random Mission:" , randomMission)
                )
            })
        }  */}
-     
-      {missionsCopy.map((elem) => {
-        return (
-          <div className="container-card">
-            <Card style={{ width: "18rem", height: "25rem" }}>
-              <Card.Img variant="top" src={elem.image} />
-              <Card.Body>
-                {user ? (
-                  <Link to={`/missions/${elem._id}`}>
-                    <Card.Title>Mission: {elem.name}</Card.Title>
-                  </Link>
-                  
-                ) : (
-                  <Link to={"/signin"}>
-                    {" "}
-                    <Card.Title>Mission: {elem.name}</Card.Title>
-                  </Link>
-                )}
-                <Rating name="read-only" value={elem.rate} readOnly />     
-                {user ? (
-                  <Link to={`/profile/mymissions`}>
-                    <Button
-                      onClick={(event) => {
-                        applyClick(event, elem._id);
-                      }}
-                      variant="primary"
-                    >
-                      Apply for this!
-                    </Button>
-                  </Link>
-                ) : (
-                  <Link to={"/signin"}>
-                    <p>Login for application</p>
-                  </Link>
-                )}
-              </Card.Body>
-            </Card>
-          </div>
-        );
-      })}
+      <div className="missionCards">
+        {missionsCopy.map((elem) => {
+          return (
+            <div className="container-card">
+              {user ? (
+                <>
+                  <Card style={{ width: "18rem", height: "25rem" }}>
+                    <CardMedia
+                      component="img"
+                      height="140"
+                      image={elem.image}
+                      alt=""
+                    />
+                    <Card.Body>
+                      <Rating name="read-only" value={elem.rate} readOnly />
+                      <Link to={`/missions/${elem._id}`}>
+                        <Card.Title>Mission: {elem.name}</Card.Title>
+                      </Link>
+                      <Link to={`/profile/mymissions`}>
+                        <button
+                          className="applyBtn"
+                          onClick={(event) => {
+                            applyClick(event, elem._id);
+                          }}
+                        >
+                          Apply for this!
+                        </button>
+                      </Link>
+                    </Card.Body>
+                  </Card>
+                </>
+              ) : (
+                <>
+                  <Card style={{ width: "18rem", height: "25rem" }}>
+                    <CardMedia
+                      component="img"
+                      height="140"
+                      image={elem.image}
+                      alt=""
+                    />
+                    <Card.Body>
+                      <Link to={"/signin"}>
+                        {" "}
+                        <Card.Title>Mission: {elem.name}</Card.Title>
+                      </Link>
+                      <Link to={"/signin"}>
+                        <p>Login for application</p>
+                      </Link>
+                    </Card.Body>
+                  </Card>
+                </>
+              )}
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }

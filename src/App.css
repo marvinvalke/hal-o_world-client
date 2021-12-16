@@ -1,4 +1,219 @@
-body {
-  background-color: blue;
+/* 
+COLORS
+YELLOW =  color: rgb(240, 236, 15);
+ 
+
+
+ .card {
+   background-color: #dadadaBa;
+ }
+
+
+*/
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #dadadaBa;
+  background-clip: border-box;
+  border-radius: 0.25rem;
 }
 
+.logo {
+  width: 200px;
+}
+
+.logo:hover {
+  cursor:cell;
+}
+
+#appLink {
+  color: rgb(240, 236, 15);
+}
+
+#appLink:hover {
+  color: ghostwhite;
+}
+
+
+.landing-page-welcome {
+  margin-left: 10%;
+}
+
+.welcomeText{
+  text-align: center;
+  font-size: 2em;
+  
+}
+
+.welcomeTextContainer{
+  font-family: 'Bungee', cursive;
+  color: rgb(245, 247, 221);
+  padding: 10px 20px;
+}
+
+
+
+
+  @keyframes float {
+    0% {
+      box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
+      transform: translatey(-10px);
+    }
+    50% {
+      box-shadow: 0 25px 15px 0px rgba(0,0,0,0.2);
+      transform: translatey(-40px);
+    }
+    100% {
+      box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
+      transform: translatey(-10px);
+    }
+  }
+  
+.landingBtn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+
+
+
+.avatar2 {
+  width: 400px;
+  height: 60px;
+  transform: translatey(0px);
+  animation: float 6s ease-in-out infinite;
+  background: transparent;
+  border: 1px solid rgb(240, 236, 15);
+  margin: 50px 
+}
+
+.avatarLink{
+  font-family: 'Bungee', cursive;
+  color: rgb(240, 236, 15);
+  text-decoration: none;
+  }
+
+  @media only screen and (max-width: 450px) {
+    .landingBtn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 20px;
+    }
+    .avatar2 {
+      width: 300px;
+      margin-top: 5px;
+      margin-bottom: 5px;
+    }
+    .welcomeText{
+      font-size: 25px;
+    }
+    .welcomeTextContainer{
+      margin-top:50px;
+      margin-bottom:50px;
+      margin-left:8px;
+      margin-right:8px;
+    }
+  }
+
+  .apodComponent{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .apodCard {
+    margin-bottom: 50px;
+  }
+
+  .apodBdayForm{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+  }
+
+  .apodBdayForm > button{
+    width: 100px;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    margin-bottom: 15px;
+
+  }
+
+  .bDayInput{
+width: 300px;
+height: 40px;
+margin: 10px;
+background-color: #dadadaBa;
+border-style: none;
+text-align: center;
+  }
+
+  .apodH1{
+    margin-top: 100px;
+  }
+
+/*   .missionsContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  } */
+
+  .missionCards {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.container-card{
+  margin: 10px;
+}
+
+.missionTitles{
+  font-family: 'Bungee', cursive;
+  color: rgb(245, 247, 221);
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.input-group{
+width: 900px;
+margin-bottom: 40px;
+
+}
+
+.searchBarComponent{
+  display: flex;
+  justify-content: center;
+  
+}
+
+.applyBtn{
+  border: none;
+  font-size: 15px;
+  color: rgb(223, 219, 4)
+}
+
+.applyBtn:hover{
+  border: none;
+  font-size: 20px;
+
+}
+
+.missionDetailsContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+ 

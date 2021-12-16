@@ -39,35 +39,55 @@ function Profile(props) {
 
   return (
     <div className="profile">
-      <p>Hello </p>
-      <div class="container mt-6 mb-4 p-4 d-flex justify-content-center">
-        <div class="card p-4">
-          <div class="  d-flex flex-column justify-content-center align-items-center">
+      <h1>Hello {user.username}</h1>
+      <div class="container mt-4 mb-4 p-3 d-flex justify-content-center">
+        <div class="cardProfile p-4">
+          <div class=" image d-flex flex-column justify-content-center align-items-center">
             {" "}
-            <span class="name "> Hello {user.username} ! </span>{" "}
             <button class="btn btn-secondary avatar">
               {" "}
               <img
                 src={user.profilePic}
-                height="120"
-                width="120"
+                height="100"
+                width="100"
                 alt=""
               />
             </button>{" "}
-            
-            {/* <span class="idd">{user.email}</span> */}
+            <span class="name mt-3">{user.username}</span>{" "}
+            <span class="idd">{user.email}</span>
               <button >
                 <Link to={`/profile/${user._id}/edit`}>Edit my profile</Link>
-              </button>
+              </button>{" "}
             </div>
             <button>
               <Link to={`/profile/mymissions`}>My Missions</Link>
             </button>
             <button>
               <Link to={`/profile/mymissions/create`}>Create Missions</Link>
-            </button>            
+            </button>
+            <div class=" d-flex mt-2">
+              {" "}
+          </div>
         </div>
-      </div>     
+      </div>
+      {/*  <TextField
+        id="filled-read-only-input"
+        label="Username"
+        defaultValue={user.username}
+        InputProps={{
+          readOnly: true,
+        }}
+        variant="filled"
+      />
+      <TextField
+        id="filled-read-only-input"
+        label="email"
+        defaultValue={user.email}
+        InputProps={{
+          readOnly: true,
+        }}
+        variant="filled"
+      /> */}
     </div>
   );
 }

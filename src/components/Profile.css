@@ -1,19 +1,11 @@
-.card {
+.cardProfile {
     width: 250px;   
-    background-color: #dadada8a;
-    border: none;
+	background-color: #dadadaBa;
     /* cursor: pointer; */
     transition: all 0.5s;
-    
 }
 
-.image img {
-    /* transition: all 0.5s */
-}
 
-.card:hover .image img {
-    /* transform: scale(1.5) */
-}
 
 .btn {
     height: 140px;

@@ -62,7 +62,7 @@ function SolarSystem() {
 
   return (
     <div>
-      <body class="opening hide-UI view-2D zoom-large data-close controls-close">
+      <body id="solarSystemComponenet" class="opening hide-UI view-2D zoom-large data-close controls-close">
         <div id="data">
           <a class="sun" title="sun" href="#sunspeed">
             Sun

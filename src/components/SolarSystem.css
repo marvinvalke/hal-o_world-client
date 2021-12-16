@@ -41,6 +41,7 @@ table {
   font-weight: 300;
   background-color: #08090A; } */
 
+
 #universe {
   z-index: 1;
   position: absolute;
@@ -49,7 +50,8 @@ table {
   height: 100%;
   background-position: center 40%;
   background-repeat: no-repeat;
-  background-size: cover; }
+  background-size: cover; 
+}
 
 #galaxy {
   position: relative;

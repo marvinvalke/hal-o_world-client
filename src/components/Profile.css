@@ -1,26 +1,18 @@
-* {
-    margin: 0;
-    padding: 0
-}
-
-body {
-    background-color: #000
-}
-
 .card {
-    width: 350px;
-    background-color: #efefef;
+    width: 250px;   
+    background-color: #dadada8a;
     border: none;
-    cursor: pointer;
-    transition: all 0.5s
+    /* cursor: pointer; */
+    transition: all 0.5s;
+    
 }
 
 .image img {
-    transition: all 0.5s
+    /* transition: all 0.5s */
 }
 
 .card:hover .image img {
-    transform: scale(1.5)
+    /* transform: scale(1.5) */
 }
 
 .btn {
@@ -36,68 +28,27 @@ body {
 
 .idd {
     font-size: 14px;
-    font-weight: 600
+    font-weight: 600;
+    border-radius: 5px;
+    /* margin-bottom: -20px; */
+
 }
 
-.idd1 {
-    font-size: 12px
-}
 
-.number {
-    font-size: 22px;
-    font-weight: bold
-}
 
-.follow {
-    font-size: 12px;
-    font-weight: 500;
-    color: #444444
-}
 
-.btn1 {
-    height: 40px;
-    width: 150px;
-    border: none;
-    background-color: #000;
-    color: #aeaeae;
-    font-size: 15px
-}
-
-.text span {
-    font-size: 13px;
-    color: #545454;
-    font-weight: 500
-}
-
-.icons i {
-    font-size: 19px
-}
-
-hr .new1 {
-    border: 1px solid
-}
-
-.join {
-    font-size: 14px;
-    color: #a0a0a0;
-    font-weight: bold
-}
-
-.date {
-    background-color: #ccc
-}
 @keyframes float {
 	0% {
 		box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
-		transform: translatey(0px);
+		transform: translatey(-10px);
 	}
 	50% {
 		box-shadow: 0 25px 15px 0px rgba(0,0,0,0.2);
-		transform: translatey(-20px);
+		transform: translatey(-50px);
 	}
 	100% {
 		box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
-		transform: translatey(0px);
+		transform: translatey(-10px);
 	}
 }
 
@@ -105,10 +56,11 @@ hr .new1 {
 	width: 150px;
 	height: 150px;
 	box-sizing: border-box;
-	border: 5px white solid;
+	border: 5px rgb(207, 224, 255) solid;
+    background-color: #efefef;
 	border-radius: 50%;
 	overflow: hidden;
-	box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
+	box-shadow: 0 5px 10px 0px rgba(185, 40, 40, 0.6);
 	transform: translatey(0px);
 	animation: float 6s ease-in-out infinite;
 	/* img { width: 100%; height: auto; } */

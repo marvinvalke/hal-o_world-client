@@ -82,11 +82,9 @@ function Missions(props) {
 
   //------------------handle getting a random mission------------------------
   const handleRandomMission = () => {
-    let randomizedMission =
-      missionsCopy[Math.floor(Math.random() * missionsCopy.length)];
+    let randomMission = missionsCopy[Math.floor(Math.random() * missionsCopy.length)]
 
-      
-    setRandomMission(randomizedMission);
+        setMissionsCopy([randomMission, ...missionsCopy])
   };
   //---------------------------------------------------------------------------
 console.log("Random Mission:" , randomMission)

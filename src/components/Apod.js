@@ -70,7 +70,7 @@ function Apod(props) {
 
       {dateEntered ? (
         <>
-          <Card sx={{ maxWidth: 345 }}>
+          <Card sx={{ width: 500 }}>
             <a href={bDayPic.url}>
               <CardMedia
                 component="img"

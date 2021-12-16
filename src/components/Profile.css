@@ -7,13 +7,13 @@
     
 }
 
-.image img {
-    /* transition: all 0.5s */
+ .image img {
+     transition: all 0.5s 
 }
 
 .card:hover .image img {
-    /* transform: scale(1.5) */
-}
+    /transform: scale(1.5) 
+} 
 
 .btn {
     height: 140px;
@@ -63,5 +63,5 @@
 	box-shadow: 0 5px 10px 0px rgba(185, 40, 40, 0.6);
 	transform: translatey(0px);
 	animation: float 6s ease-in-out infinite;
-	/* img { width: 100%; height: auto; } */
+	img { width: 100%; height: auto; }
 }

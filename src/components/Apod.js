@@ -71,13 +71,14 @@ function Apod(props) {
       {dateEntered ? (
         <>
           <Card sx={{ maxWidth: 345 }}>
-           
-              <CardMedia 
+            <a href={bDayPic.url}>
+              <CardMedia
                 component="img"
                 height="140"
                 image={bDayPic.url}
                 alt=""
               />
+            </a>
             <CardContent>
               <Typography gutterBottom variant="h5" component="div">
                 {bDayPic.title}
@@ -97,12 +98,9 @@ function Apod(props) {
       ) : (
         <>
           <Card sx={{ maxWidth: 345 }}>
-             <CardMedia
-                component="img"
-                height="140"
-                image={url}
-                alt="green iguana"
-              />
+            <a href={url}>
+              <CardMedia component="img" height="140" image={url} alt="" />
+            </a>
             <CardContent>
               <Typography gutterBottom variant="h5" component="div">
                 {title}

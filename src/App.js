@@ -19,6 +19,8 @@ import CreateMissions from "./components/CreateMissions";
 import SolarSystem from "./components/SolarSystem";
 import NotFound from "./components/NotFound";
 import Reviews from "./components/Reviews";
+import "./App.css"
+
 
 function App() {
   // STATES HOOKS AND CONTEXT----------------------------
@@ -77,9 +79,9 @@ function App() {
   //-------------------------------------------------
 
   // CONDITIONAL RENDERING OF USER CHANGES------------
-  // useEffect(() => {
-  //   navigate("/");
-  // }, [user]);
+  useEffect(() => {
+  navigate("/");
+  }, [user]);
   //------------
 
   // EDIT BUTTON HANDLING-------------------------------

@@ -3,6 +3,8 @@ import Chatbot from "./ChatBot";
 import { Link } from "react-router-dom";
 import "./Profile.css";
 import "./LandingPage.css";
+
+
 function LandingPage() {
   return (
     <div className="landingPage">

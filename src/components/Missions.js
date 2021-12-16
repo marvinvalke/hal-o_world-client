@@ -1,13 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
-import {
-  Spinner,
-  Card,
-  ListGroup,
-  ListGroupItem,
-  Accordion,
-  Button,
-} from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
+import {Spinner, Card} from "react-bootstrap";
+import { Link } from "react-router-dom";
 import SearchBar from "./SearchBar";
 import { HALO_URL } from "../config";
 import axios from "axios";
@@ -20,7 +13,7 @@ function Missions(props) {
   const [missions, setMissions] = useState([]); //to store missions info
   const [missionsCopy, setMissionsCopy] = useState(missions); //new state with missions copy to be filtered by the search bar
   const [randomMission, setRandomMission] = useState(null);
-  const navigate = useNavigate();
+
 
   //------------------fetching info from the api -------------------------
   useEffect(() => {

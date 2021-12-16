@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { HALO_URL } from "../config";
 import axios from "axios";
-import { Spinner, Form, Button } from "react-bootstrap";
+import { Spinner, Form } from "react-bootstrap";
 import DifficultyLevel from "./DifficultyLevel";
 
 function EditMission(props) {

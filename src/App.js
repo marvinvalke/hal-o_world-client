@@ -29,7 +29,6 @@ function App() {
   const [missionsCopy, setMissionsCopy] = useState(missions);
   const [applyMission, setApplyMission] = useState(missions);
   const navigate = useNavigate();
-  const [bDayPic, setBDayPic] = useState(null);
   const [createdMission, setCreatedMission] = useState([]);
   //-----------------------------------------------
 

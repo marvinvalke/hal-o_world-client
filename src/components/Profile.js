@@ -1,22 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { HALO_URL } from "../config";
 import axios from "axios";
-import { useParams, Link, Navigate } from "react-router-dom";
-import {
-  Spinner,
-  Card,
-  ListGroup,
-  ListGroupItem,
-  Button,
-} from "react-bootstrap";
+import { Link } from "react-router-dom";
+import {Spinner} from "react-bootstrap";
 
 import "./Profile.css";
 
-function Profile(props) {
+function Profile() {
   const [user, setUser] = useState(null);
-  const { userId } = useParams();
-  const { applyMission } = props;
-  // console.log(user)
+
+
 
   useEffect(() => {
     async function getData() {

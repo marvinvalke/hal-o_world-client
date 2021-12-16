@@ -2,13 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { useParams, Navigate, Link } from "react-router-dom";
 import { HALO_URL } from "../config";
 import axios from "axios";
-import {
-  Spinner,
-  Card,
-  ListGroup,
-  ListGroupItem,
-  Button,
-} from "react-bootstrap";
+import {Spinner, Card,ListGroup} from "react-bootstrap";
 import CardMedia from "@mui/material/CardMedia";
 
 function MissionsDetails(props) {

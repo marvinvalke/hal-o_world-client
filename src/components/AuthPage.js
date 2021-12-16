@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "./AuthPage.css";
-import { FormHelperText } from "@mui/material";
 
 function AuthPage(props) {
   const { onSignIn, onRegister } = props;

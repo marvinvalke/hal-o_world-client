@@ -3,14 +3,7 @@ import { Link } from "react-router-dom";
 import React from "react";
 import { useContext } from "react";
 import { UserContext } from "../context/app.context";
-import {
-  Navbar,
-  Container,
-  Nav,
-  NavDropdown,
-  Button,
-  Image,
-} from "react-bootstrap";
+import { Navbar, Container, Nav, Image} from "react-bootstrap";
 // someting ? (<p></p>) : (<p></p>)
 
 function MyNav(props) {

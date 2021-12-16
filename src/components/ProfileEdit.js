@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { HALO_URL } from "../config";
 import axios from "axios";
-import { useParams } from "react-router-dom";
-import { Spinner, Form, Button } from "react-bootstrap";
+import { Spinner, Form } from "react-bootstrap";
 
 function ProfileEdit(props) {
   const [user, setUser] = useState(null);
-  const { userId } = useParams();
   const { btnEdit } = props;
-  // console.log(user)
+
   useEffect(() => {
     async function getData() {
       let response = await axios.get(`${HALO_URL}/profile`, {

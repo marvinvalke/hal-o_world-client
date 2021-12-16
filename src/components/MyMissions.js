@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import { HALO_URL } from "../config";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { Card, ListGroup, ListGroupItem, Button } from "react-bootstrap";
-import Rating from "@mui/material/Rating";
+import { Card, ListGroup } from "react-bootstrap";
 import CardMedia from "@mui/material/CardMedia";
 
 function MyMissions(props) {
@@ -17,17 +16,15 @@ function MyMissions(props) {
       });
       setApplyMission(response.data.MissionsAdded);
       setCreatedMission(response.data.MissionsCreated);
-      // console.log(response.data.MissionsAdded)
+
     }
 
     getData();
   }, []);
 
-  console.log("craetedMission", createdMission);
-  console.log("addedMission", applyMission);
 
   const { deleteButton } = props;
-  console.log(props.missionCreated);
+
   return (
     <div className="myMissionsContainer">
       <div className="missionsApply">

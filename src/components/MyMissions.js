@@ -16,12 +16,10 @@ function MyMissions(props) {
       });
       setApplyMission(response.data.MissionsAdded);
       setCreatedMission(response.data.MissionsCreated);
-
     }
 
     getData();
   }, []);
-
 
   const { deleteButton } = props;
 
@@ -34,7 +32,7 @@ function MyMissions(props) {
         {applyMission.map((elem) => {
           console.log(elem.rate);
           return (
-            <Card style={{ width: "18rem", height:"400px", margin: "20px" }}>
+            <Card style={{ width: "18rem", height: "550px", margin: "20px" }}>
               <CardMedia
                 component="img"
                 height="140"
@@ -56,7 +54,11 @@ function MyMissions(props) {
               </Card.Body>
 
               <Link to={`/profile/mymissions/${elem._id}/review`}>
-                <button id="editMission" className="applyBtn" variant="outline-success">
+                <button
+                  id="editMission"
+                  className="applyBtn"
+                  variant="outline-success"
+                >
                   Review mission
                 </button>{" "}
               </Link>
@@ -75,7 +77,7 @@ function MyMissions(props) {
             {createdMission.map((elem) => {
               return (
                 <Card
-                  style={{ width: "18rem", height:"400px", margin: "20px" }}
+                  style={{ width: "18rem", height: "550px", margin: "20px" }}
                 >
                   <CardMedia
                     component="img"
@@ -96,11 +98,16 @@ function MyMissions(props) {
                     </ListGroup>
                   </Card.Body>
                   <Link to={`/missions/${elem._id}/edit`}>
-                    <button id="editMission" className="applyBtn" variant="outline-success">
+                    <button
+                      id="editMission"
+                      className="applyBtn"
+                      variant="outline-success"
+                    >
                       Edit mission{" "}
                     </button>
                   </Link>
-                  <button id="editMission"
+                  <button
+                    id="editMission"
                     className="applyBtn"
                     onClick={() => {
                       deleteButton(elem._id);

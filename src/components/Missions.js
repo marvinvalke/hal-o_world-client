@@ -37,9 +37,9 @@ function Missions(props) {
   //-----------------------------------------------------------------
 
   // conditional rendering for when user updates------------
-   useEffect(() => {
+/*    useEffect(() => {
     navigate('/')
- }, [missions])
+ }, [missions]) */
   //-------------------------------------------------
 
   //------------------loading content from api -------------------------

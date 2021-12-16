@@ -39,31 +39,32 @@ function Profile(props) {
 
   return (
     <div className="profile">
+     <div className="missionTitles">
       <h1>Hello {user.username}</h1>
+     </div>
       <div class="container mt-4 mb-4 p-3 d-flex justify-content-center">
         <div class="cardProfile p-4">
           <div class=" image d-flex flex-column justify-content-center align-items-center">
             {" "}
-            <button class="btn btn-secondary avatar">
+            <button id="profilePicBubble" class="btn btn-secondary avatar">
               {" "}
-              <img
+              <img className="profilePic"
                 src={user.profilePic}
                 height="100"
                 width="100"
                 alt=""
               />
             </button>{" "}
-            <span class="name mt-3">{user.username}</span>{" "}
-            <span class="idd">{user.email}</span>
+           
               <button >
-                <Link to={`/profile/${user._id}/edit`}>Edit my profile</Link>
+                <Link className="profileBtn" to={`/profile/${user._id}/edit`}>Edit my profile</Link>
               </button>{" "}
             </div>
             <button>
-              <Link to={`/profile/mymissions`}>My Missions</Link>
+              <Link className="profileBtn" to={`/profile/mymissions`}>My Missions</Link>
             </button>
             <button>
-              <Link to={`/profile/mymissions/create`}>Create Missions</Link>
+              <Link className="profileBtn" to={`/profile/mymissions/create`}>Create Missions</Link>
             </button>
             <div class=" d-flex mt-2">
               {" "}

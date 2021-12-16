@@ -33,6 +33,10 @@ function App() {
   const [createdMission, setCreatedMission] = useState([]);
   //-----------------------------------------------
 
+useEffect(() => {
+  fetchUser()
+}, [])
+
   const fetchUser = async () => {
     let response = await axios.get(`${HALO_URL}/profile`, {
       withCredentials: true,

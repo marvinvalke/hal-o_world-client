@@ -1,10 +1,10 @@
 # Hal-O World
-
+https://hal-o-world.herokuapp.com/
 # Description
 This application allows you to access space missions. User can join the mission, create one on his own.
 the user can Create Edit Update and Delete their own space missions.
 User can also join missions created by other users, by saving it to his profil and add it to his calendar.
-Each mission can also be reviewed by users (Rating + Comments). HELLOOOOOOO
+Each mission can also be reviewed by users (Rating + Comments). 
 
 # User Stories
 - 404: As an anon/user I can see a 404 page if I try to reach a page that does not exist so that I know it's my fault
@@ -139,8 +139,8 @@ https://www.figma.com/file/TrIfQXStAxeNeibtLw5QH3/Untitled?node-id=0%3A1
 
 
 # Git
-
+https://github.com/marvinvalke/hal-o_world-client
 
 
 # Slides
-Google Slides will go there
+https://docs.google.com/presentation/d/1c8kglw8J3udSNeFIiTSuNY53OldwRgv-A-Gi-hKmo74/edit?usp=sharing

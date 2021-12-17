@@ -81,9 +81,9 @@ function App() {
   //-------------------------------------------------
 
   // CONDITIONAL RENDERING OF USER CHANGES------------
-  useEffect(() => {
+/*   useEffect(() => {
     navigate("/");
-  }, [user]);
+  }, [user]); */
   //------------
 
   // EDIT BUTTON HANDLING-------------------------------
@@ -225,7 +225,7 @@ function App() {
       <MyNav onLogout={handleLogout} />
       <div className="testDiv">
       <Routes>
-        <Route path="*" element={<NotFound />} />
+        <Route path="/*" element={<NotFound />} />
         <Route
           path="/signin"
           element={
